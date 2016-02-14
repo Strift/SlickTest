@@ -1,5 +1,6 @@
 package slicktest;
 
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -98,7 +99,7 @@ public class SimpleSlickGame extends BasicGame
     	AppGameContainer appgc;
 		try {
 			appgc = new AppGameContainer(
-				new MyGame(), 640, 360, false
+				new SimpleSlickGame("SlickTest"), 640, 360, false
 			);
 			appgc.setTargetFrameRate(60);
 	        appgc.setShowFPS(false);
