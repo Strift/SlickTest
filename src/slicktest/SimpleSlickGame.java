@@ -43,8 +43,8 @@ public class SimpleSlickGame extends BasicGame
     
     private Animation loadAnim(int startX, int endX, int y) {
     	Animation animation = new Animation() ;
-    	for(int x = startX ; x < endX ; x++) {
-    		animation.addFrame(player.getSprite(x, y), 500);
+    	for(int x = startX ; x <= endX ; x++) {
+    		animation.addFrame(player.getSprite(x, y), 200);
     	}
     	return animation ;
     }
