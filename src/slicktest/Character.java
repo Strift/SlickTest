@@ -1,5 +1,6 @@
 package slicktest;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -16,11 +17,14 @@ public class Character {
 	
 	private int locationX ;
 	private int locationY ;
-	private int moveSpeed ;
-	private String name ;
-	private SpriteSheet sprite ;
 	private boolean moving ;
 	private int direction ;
+	private int moveSpeed ;
+	private String name ;
+	
+	private SpriteSheet sprite ;
+	
+	private Animation animations [] ;
 	
 	/**
 	 * @param name : character name
@@ -35,7 +39,33 @@ public class Character {
 		this.setMoving(false) ;
 		this.setDirection(1) ;
 		this.setMoveSpeed(2);
+		this.initAnimations() ;
 	}
+	
+	public void initAnimations() {
+		if(this.animations == null) {
+			this.animations = new Animation[8] ;
+		}
+		int nbSprite = this.getSpriteSheet().getHorizontalCount() ;
+		// Not moving animations
+		for(int i = 0 ; i < 4 ; i++) 
+			this.animations[i] = loadAnim(0, 1, i) ;
+    	// Moving animations
+		for(int i = 0 ; i < 4 ; i++) 
+			this.animations[i+4] = loadAnim(1, nbSprite, i) ;
+	}
+	
+	public Animation[] getAnimations() {
+		return this.animations ;
+	}
+	
+    private Animation loadAnim(int startX, int endX, int y) {
+    	Animation animation = new Animation() ;
+    	for(int x = startX ; x < endX ; x++) {
+    		animation.addFrame(this.getSprite(x, y), 100);
+    	}
+    	return animation ;
+    }
 	
 	public void setLocation(int locationX, int locationY) {
 		this.locationX = locationX ;
