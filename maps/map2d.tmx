@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="16" tileheight="16" nextobjectid="18">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="16" tileheight="16" nextobjectid="18">
  <tileset firstgid="1" name="tile2d" tilewidth="16" tileheight="16" spacing="2" margin="2" tilecount="1350" columns="54">
   <image source="../images/tile2d.png" width="982" height="452"/>
  </tileset>
- <layer name="background2" width="50" height="10">
+ <layer name="background2" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACwthYWAIGcWjeBSP4lE8ikfxkMYA3NVcP9AHAAA=
+   H4sIAAAAAAAAC+3WMQ0AIBAEsBtYcfJy8K8FE3yApEM9tJIUHDahwRoAwO9ufwJetgFF/S29oA8AAA==
   </data>
  </layer>
- <layer name="background1" width="50" height="10">
+ <layer name="background1" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC9WRUQqAIBBEx7xFdajqpzpUdagu1hIJsoiuZkoDiwjtzLwEgLnBrVYDHU2vIdaigFWFv/N5p+S69raHY6D7SDMJ/Ez/neZQYR7bm+dLcl2sfM9wSMT781PyPjH/K2ZHwhHqn8KTWz6O2P41eVwcb/vX4LE5cvcvyXM23/cvxWP8S6l03l90AQIIt8nQBwAA
+   H4sIAAAAAAAAC5NmZmCQHgY4cJjggQ7H0fhAxTBQwcTAUAnEVUwMNAXk2kOp+0jRT6+wwGVXOJQtBU1rMszY9WIDEYwMDJGMhNXhM5sce7Hp64X6IwCa1oKIMA/m/j4g7mck7B9ks9HtJ8ZebH5F19dLQjpAdz86TUz8kBJepOghxh+E3E+Of6gN8PmDVPcPpH+w+YNS9w+Ef5D9QW33E/LPBSD7IhBfYkRlo8sRAw4z0d79+PzDjhSO7GhpA51PCMDMpxegt31DBexlHsWjeBTjwgB0zR9KoA8AAA==
   </data>
  </layer>
- <layer name="ground" width="50" height="10">
+ <layer name="ground" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGP7gNBCfISCGTc1gA4yMDAxMjPjFsKkZBaOA2sCIiYHBGIhNgDiHaaBdQx7IALp7ARrG5xdJIJYiUnwzEG/Bg6kFsPkBhk2B2AyLf/yBOACLWejiID/IA8sSBTy4nXl44L3DBAMA8tvBxNAHAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwWMBpID5DQAybmsEGGBkZGJgY8YthUzMKRgG1gRETA4MxEJsAcQ7TQLuGPJABdPcCNIzPL5JALEWk+GYg3oIHUwtg8wMMmwKxGRb/+ANxABaz0MVBfpAHliUKeHA78/DAe4cJDmRhYKgC0uV4MEhNEAsVEyENwFpm4rAky+D2D7H+QPYPvrgbKEyqPwYrBgB8cZMsoA8AAA==
   </data>
  </layer>
- <layer name="foreground1" width="50" height="10">
+ <layer name="foreground1" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGJyggomBoRKIq5hG3THQgBphMBTCMZwJlR6qoJcJlR6q4DATKj0KRsEowA8Ausfdo9AHAAA=
+   H4sIAAAAAAAACwtkZmAIHAZYepjggQ5HauFRMApGEqhgYmCoBOIqplF3DDSgRhgMhXAMZ0KlhyroZUKlhyo4zIRKj4JRMApGwSgYBeQCAF+hRA2gDwAA
   </data>
  </layer>
 </map>
