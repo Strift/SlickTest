@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="tile2d" tilewidth="16" tileheight="16" spacing="2" margin="2" tilecount="1350" columns="54">
-  <image source="../images/tile2d.png" trans="b0e0f8" width="982" height="452"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="10" tilewidth="16" tileheight="16" nextobjectid="8">
+ <tileset firstgid="1" name="sma4_tiles" tilewidth="16" tileheight="16" spacing="2" margin="2" tilecount="1350" columns="54">
+  <image source="sma4_tiles.png" trans="b0e0f8" width="982" height="452"/>
  </tileset>
- <layer name="background2" width="50" height="10">
+ <layer name="background2" width="50" height="10" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAACwthYWAIGcWjeBSP4lE8ikfxkMYA3NVcP9AHAAA=
   </data>
  </layer>
- <layer name="background1" width="50" height="10">
+ <layer name="background1" width="50" height="10" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9WRUQqAIBBEx7xFdajqpzpUdagu1hIJsoiuZkoDiwjtzLwEgLnBrVYDHU2vIdaigFWFv/N5p+S69raHY6D7SDMJ/Ez/neZQYR7bm+dLcl2sfM9wSMT781PyPjH/K2ZHwhHqn8KTWz6O2P41eVwcb/vX4LE5cvcvyXM23/cvxWP8S6l03l90AQIIt8nQBwAA
   </data>
@@ -18,9 +18,19 @@
    H4sIAAAAAAAAC2NgGP7gNBCfISCGTc1gA4yMDAxMjPjFsKkZBaOA2sCIiYHBGIhNgDiHaaBdQx7IALp7ARrG5xdJIJYiUnwzEG/Bg6kFsPkBhk2B2AyLf/yBOACLWejiID/IA8sSBTy4nXl44L3DBAMA8tvBxNAHAAA=
   </data>
  </layer>
- <layer name="foreground1" width="50" height="10">
+ <layer name="foreground1" width="50" height="10" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGJyggomBoRKIq5hG3THQgBphMBTCMZwJlR6qoJcJlR6q4DATKj0KRsEowA8Ausfdo9AHAAA=
   </data>
  </layer>
+ <objectgroup name="collisions">
+  <object id="1" x="288.667" y="125.333">
+   <polyline points="0,0 32,-30.6667 58.6667,-46.6667 82.6667,-46 112,-13.3333 145.333,2 145.333,22 -8,20 0,-0.666667"/>
+  </object>
+  <object id="3" x="496" y="95.3333" width="31.3333" height="36"/>
+  <object id="4" x="592" y="96" width="30.6667" height="38"/>
+  <object id="5" x="656.667" y="112.667" width="16.6667" height="24"/>
+  <object id="6" x="672" y="96" width="126.667" height="57.3333"/>
+  <object id="7" x="0" y="127.333" width="848.667" height="72"/>
+ </objectgroup>
 </map>
