@@ -9,19 +9,17 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class SimpleSlickGame extends BasicGame
-{
+public class MyGame extends BasicGame {
 	
 	private TiledMap currentMap ;
 	private Player player ;
 	private Animation playerAnims[] ;
-	
-	public SimpleSlickGame(String gamename)
-	{
-		super(gamename);
-	}
 
-	@Override
+	public MyGame() {
+        super("Astralol");
+    }
+
+    @Override
     public void init(GameContainer container) throws SlickException {
     	this.currentMap  = new TiledMap("/maps/1.tmx") ;
 
@@ -108,5 +106,4 @@ public class SimpleSlickGame extends BasicGame
 			e.printStackTrace();
 		}
     }
-    
 }
