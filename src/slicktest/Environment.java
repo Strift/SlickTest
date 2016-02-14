@@ -13,7 +13,7 @@ public class Environment {
 		this.maps = new ArrayList<Map>();
 		this.maps.add(new Map("/maps/map2d.tmx")) ;
 		this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
-    	this.player.setLocation(1, maps.get(0).getHeight()-8*16);
+    	this.player.setLocation(1, (maps.get(0).getHeight()-8) * Map.TILE_HEIGHT);
 	}
 
 	public void update() {
