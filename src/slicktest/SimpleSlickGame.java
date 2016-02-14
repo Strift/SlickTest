@@ -94,20 +94,5 @@ public class SimpleSlickGame extends BasicGame
         	this.player.setMoving(false);
         }
     }
-        
-    public static void main(String[] args) {
-    	AppGameContainer appgc;
-		try {
-			appgc = new AppGameContainer(
-				new SimpleSlickGame("SlickTest"), 640, 360, false
-			);
-			appgc.setTargetFrameRate(60);
-	        appgc.setShowFPS(false);
-	        appgc.start();
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }
     
 }
