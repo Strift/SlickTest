@@ -6,7 +6,7 @@ import org.newdawn.slick.SpriteSheet;
 
 /**
  * 
- * This class is the character classe. It defines a character with his informations,
+ * This class is the character class. It defines a character with his informations,
  * like current location or direction.
  * 
  * @author elythiel
@@ -22,6 +22,13 @@ public class Character {
 	private boolean moving ;
 	private int direction ;
 	
+	/**
+	 * @param name : character name
+	 * @param file : spritesheet file path
+	 * @param x : location on X axis
+	 * @param y : location on Y axis
+	 * @throws SlickException
+	 */
 	public Character(String name, String file, int x, int y) throws SlickException {
 		this.setName(name) ;
 		this.sprite = new SpriteSheet(file, x, y) ;
@@ -43,7 +50,7 @@ public class Character {
 	}
 	
 	/**
-	 * This method define if the character is moving or not.
+	 * This method defines if the character is moving or not.
 	 * @param moving
 	 */
 	public void setMoving(boolean moving) {
@@ -53,9 +60,16 @@ public class Character {
 	public boolean isMoving() {
 		return this.moving ;
 	}
-
-	public void setSpriteSheet(String file, int x, int y) throws SlickException {
-		this.sprite = new SpriteSheet(file, x, y) ;
+	
+	/**
+	 * 
+	 * @param path : sprite sheet file path
+	 * @param x
+	 * @param y
+	 * @throws SlickException
+	 */
+	public void setSpriteSheet(String path, int x, int y) throws SlickException {
+		this.sprite = new SpriteSheet(path, x, y) ;
 	}
 	
 	public Image getSprite(int x, int y) {
