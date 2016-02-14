@@ -23,10 +23,10 @@ public class SimpleSlickGame extends BasicGame
 
 	@Override
     public void init(GameContainer container) throws SlickException {
-    	this.currentMap  = new TiledMap("/maps/1.tmx") ;
+    	this.currentMap  = new TiledMap("/maps/map2d.tmx") ;
 
     	this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
-    	this.player.setLocation(0, 320);
+    	this.player.setLocation(0, 98);
     	
     	this.playerAnims = new Animation[8] ;
     	this.playerAnims[0] = loadAnim(0, 0, 0) ;
