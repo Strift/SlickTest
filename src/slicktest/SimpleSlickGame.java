@@ -30,10 +30,10 @@ public class SimpleSlickGame extends BasicGame
     	this.player.setLocation(0, 320);
     	
     	this.playerAnims = new Animation[8] ;
-    	this.playerAnims[0] = loadAnim(0, 1, 0) ;
-    	this.playerAnims[1] = loadAnim(0, 1, 1) ;
-    	this.playerAnims[2] = loadAnim(0, 1, 2) ;
-    	this.playerAnims[3] = loadAnim(0, 1, 3) ;
+    	this.playerAnims[0] = loadAnim(0, 0, 0) ;
+    	this.playerAnims[1] = loadAnim(0, 0, 1) ;
+    	this.playerAnims[2] = loadAnim(0, 0, 2) ;
+    	this.playerAnims[3] = loadAnim(0, 0, 3) ;
     	this.playerAnims[4] = loadAnim(1, 2, 0) ;
     	this.playerAnims[5] = loadAnim(1, 2, 1) ;
     	this.playerAnims[6] = loadAnim(1, 2, 2) ;
@@ -43,8 +43,8 @@ public class SimpleSlickGame extends BasicGame
     
     private Animation loadAnim(int startX, int endX, int y) {
     	Animation animation = new Animation() ;
-    	for(int x = startX ; x < endX ; x++) {
-    		animation.addFrame(player.getSprite(x, y), 500);
+    	for(int x = startX ; x <= endX ; x++) {
+    		animation.addFrame(player.getSprite(x, y), 200);
     	}
     	return animation ;
     }
