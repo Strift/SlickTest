@@ -22,7 +22,7 @@ public class Application {
 			if (state != State.Uninitialized) {
 				throw new MyException("Application must be uninitialized to start.");
 			}
-			appgc = new AppGameContainer(new SimpleSlickGame(name), 800, 160, false);
+			appgc = new AppGameContainer(new Game(name), 640, 320, false);
 			appgc.setTargetFrameRate(60);
 	        appgc.setShowFPS(false);
 	        state = State.Initialized;

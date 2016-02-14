@@ -1,5 +1,6 @@
 package slicktest;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -16,26 +17,70 @@ public class Character {
 	
 	private int locationX ;
 	private int locationY ;
-	private int moveSpeed ;
-	private String name ;
-	private SpriteSheet sprite ;
 	private boolean moving ;
 	private int direction ;
+	private int moveSpeed ;
+	private String name ;
+	
+	private SpriteSheet sprite ;
+	
+	private Animation animations [] ;
 	
 	/**
 	 * @param name : character name
 	 * @param file : spritesheet file path
-	 * @param x : location on X axis
-	 * @param y : location on Y axis
+	 * @param width : sprites width
+	 * @param height : sprites height
 	 * @throws SlickException
 	 */
-	public Character(String name, String file, int x, int y) throws SlickException {
+	public Character(String name, String file, int width, int height) throws SlickException {
 		this.setName(name) ;
-		this.sprite = new SpriteSheet(file, x, y) ;
+		this.sprite = new SpriteSheet(file, width, height) ;
 		this.setMoving(false) ;
 		this.setDirection(1) ;
 		this.setMoveSpeed(2);
+		this.initAnimations() ;
 	}
+	
+	/**
+	 * This method initialize the character animations.
+	 * It sets animations in the corresponding field using the spritesheet given at instanciation.
+	 */
+	public void initAnimations() {
+		if(this.animations == null) {
+			this.animations = new Animation[8] ;
+		}
+		int nbSprite = this.getSpriteSheet().getHorizontalCount() ;
+		// Not moving animations
+		for(int i = 0 ; i < 4 ; i++) 
+			this.animations[i] = loadAnim(0, 1, i) ;
+    	// Moving animations
+		for(int i = 0 ; i < 4 ; i++) 
+			this.animations[i+4] = loadAnim(1, nbSprite, i) ;
+	}
+	
+	public Animation[] getAnimations() {
+		return this.animations ;
+	}
+	
+	public Animation getAnimation(int i) {
+		return this.animations[i] ;
+	}
+	
+	/**
+	 * This method create and return an animation based on the character spritesheet.
+	 * @param startX : first sprite to use in the animation
+	 * @param endX : last sprite to use in the animation
+	 * @param y : the line of the animation
+	 * @return
+	 */
+    private Animation loadAnim(int startX, int endX, int y) {
+    	Animation animation = new Animation() ;
+    	for(int x = startX ; x < endX ; x++) {
+    		animation.addFrame(this.getSprite(x, y), 100);
+    	}
+    	return animation ;
+    }
 	
 	public void setLocation(int locationX, int locationY) {
 		this.locationX = locationX ;
