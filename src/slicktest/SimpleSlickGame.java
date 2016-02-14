@@ -26,7 +26,7 @@ public class SimpleSlickGame extends BasicGame
     	this.currentMap  = new TiledMap("/maps/map2d.tmx") ;
 
     	this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
-    	this.player.setLocation(0, 98);
+    	this.player.setLocation(0, 96);
     	
     	this.playerAnims = new Animation[8] ;
     	this.playerAnims[0] = loadAnim(0, 0, 0) ;
@@ -43,7 +43,7 @@ public class SimpleSlickGame extends BasicGame
     private Animation loadAnim(int startX, int endX, int y) {
     	Animation animation = new Animation() ;
     	for(int x = startX ; x <= endX ; x++) {
-    		animation.addFrame(player.getSprite(x, y), 200);
+    		animation.addFrame(player.getSprite(x, y), 100);
     	}
     	return animation ;
     }
@@ -58,13 +58,15 @@ public class SimpleSlickGame extends BasicGame
     public void update(GameContainer container, int delta) throws SlickException {
     	if(player.isMoving()) {
         	if(player.getDirection() == 0) {
-        		this.player.setLocationY(player.getLocationY()-1);
+//        		this.player.setLocationY(player.getLocationY()-1);
         	} else if (player.getDirection() == 1) {
-        		this.player.setLocationX(player.getLocationX()+1);
+        		if (player.getLocationX() <= 800-32) 
+        			this.player.setLocationX(player.getLocationX()+player.getMoveSpeed());
         	} else if (player.getDirection() == 2) {
-        		this.player.setLocationY(player.getLocationY()+1);
+//        		this.player.setLocationY(player.getLocationY()+1);
         	} else if (player.getDirection() == 3) {
-        		this.player.setLocationX(player.getLocationX()-1);
+        		if (player.getLocationX() >= 0)
+        			this.player.setLocationX(player.getLocationX()-player.getMoveSpeed());
 
         	}
     	}
@@ -84,6 +86,8 @@ public class SimpleSlickGame extends BasicGame
     	} else if (key == Input.KEY_RIGHT) {
     		this.player.setDirection(1) ;
     		this.player.setMoving(true);
+    	} else if (key == Input.KEY_SPACE) {
+    		this.player.setMoveSpeed(4);
     	}
     };
     
@@ -91,6 +95,8 @@ public class SimpleSlickGame extends BasicGame
     public void keyReleased(int key, char c) {
         if(key == Input.KEY_UP || key == Input.KEY_DOWN || key == Input.KEY_LEFT || key == Input.KEY_RIGHT) {
         	this.player.setMoving(false);
+        } else if (key == Input.KEY_SPACE) {
+        	this.player.setMoveSpeed(2);
         }
     }
     

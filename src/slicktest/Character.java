@@ -33,7 +33,8 @@ public class Character {
 		this.setName(name) ;
 		this.sprite = new SpriteSheet(file, x, y) ;
 		this.setMoving(false) ;
-		this.setDirection(0) ;
+		this.setDirection(1) ;
+		this.setMoveSpeed(2);
 	}
 	
 	public void setLocation(int locationX, int locationY) {
