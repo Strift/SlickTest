@@ -20,7 +20,7 @@ public class Environment {
 		if(player.isMoving()) {
         	if(player.getDirection() == 0) {
         	} else if (player.getDirection() == 1) {
-        		if (player.getLocationX() <= maps.get(0).getWidth()*maps.get(0).getTileWidth()-32) 
+        		if (player.getLocationX() <= maps.get(0).getWidth()* Map.TILE_WIDTH - 32) 
         			this.player.setLocationX(player.getLocationX()+player.getMoveSpeed());
         	} else if (player.getDirection() == 2) {
         	} else if (player.getDirection() == 3) {
