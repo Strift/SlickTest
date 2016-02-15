@@ -1,4 +1,4 @@
-package slicktest;
+package entities;
 
 import org.newdawn.slick.SlickException;
 

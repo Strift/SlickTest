@@ -1,7 +1,9 @@
-package slicktest;
+package system;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
+
+import game.Game;
 
 /**
  * This class represents the application.

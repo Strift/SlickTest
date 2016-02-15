@@ -1,4 +1,4 @@
-package slicktest;
+package entities;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
@@ -127,6 +127,14 @@ public class Character {
 	
 	public Image getSprite(int x, int y) {
 		return this.sprite.getSprite(x, y) ;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 	
 	public SpriteSheet getSpriteSheet() {

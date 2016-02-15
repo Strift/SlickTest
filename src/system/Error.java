@@ -1,4 +1,4 @@
-package slicktest;
+package system;
 
 /**
  * This class represents our game exceptions

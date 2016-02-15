@@ -1,8 +1,10 @@
-package slicktest;
+package game;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
+
+import entities.Player;
 
 public class Environment {
 	
@@ -14,13 +16,14 @@ public class Environment {
 		this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
     	this.player.setLocation(
     			(Integer.parseInt(map.getTiledMap().getMapProperty("startX", "0"))-1) * Map.TILE_WIDTH, 
-    			Integer.parseInt(map.getTiledMap().getMapProperty("startY", "0")) * Map.TILE_HEIGHT - player.height
+    			Integer.parseInt(map.getTiledMap().getMapProperty("startY", "0")) * Map.TILE_HEIGHT - player.getHeight()
     		);
 	}
 
 	public void update() {
 		if(player.isMoving()) {
         	if(player.getDirection() == 0) {
+        		// do nothing
         	} else if (player.getDirection() == 1) {
         		if (player.getLocationX() <= map.getWidth()* Map.TILE_WIDTH - 32) 
         			this.player.setLocationX(player.getLocationX()+player.getMoveSpeed());
@@ -52,15 +55,15 @@ public class Environment {
 		for(int i = 0 ; i < tiledMap.getObjectCount(0) ; i++ ) {
 			// If object is a teleporter, we check if the player is in the object's box
 			// Then we teleport the player to his new Location
-			if(		"teleport".equals(tiledMap.getObjectType(0, i))
+			if("teleport".equals(tiledMap.getObjectType(0, i))
 				&&	player.getLocationX() > tiledMap.getObjectX(0, i)
-				&&	player.getLocationX() + player.width < tiledMap.getObjectX(0, i) + tiledMap.getObjectWidth(0, i)
-				&&	player.getLocationY() - player.height < tiledMap.getObjectY(0, i)
+				&&	player.getLocationX() + player.getWidth() < tiledMap.getObjectX(0, i) + tiledMap.getObjectWidth(0, i)
+				&&	player.getLocationY() - player.getHeight() < tiledMap.getObjectY(0, i)
 				&& player.getLocationY() < tiledMap.getObjectY(0, i) + tiledMap.getObjectHeight(0, i) 
 			) {
 				player.setLocation(
 						Integer.parseInt(tiledMap.getObjectProperty(0, i, "x", "0")) * 16,
-						Integer.parseInt(tiledMap.getObjectProperty(0, i, "y", "0")) * 16 - player.height );
+						Integer.parseInt(tiledMap.getObjectProperty(0, i, "y", "0")) * 16 - player.getHeight());
 			}	
 		}
 		
