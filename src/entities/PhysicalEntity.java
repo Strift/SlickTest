@@ -1,5 +1,6 @@
 package entities;
 
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -10,6 +11,8 @@ import org.newdawn.slick.geom.Vector2f;
 public abstract class PhysicalEntity extends Entity {
 	
 	protected Vector2f position;
+	protected int height;
+	protected int width;
 	
 	/**
 	 * Default constructor
@@ -43,5 +46,13 @@ public abstract class PhysicalEntity extends Entity {
 	 */
 	public void setPosition(Vector2f position) {
 		this.position = position;
+	}
+	
+	/**
+	 * Get the entity hitbox
+	 * @return Rectangle
+	 */
+	public Rectangle getHitbox() {
+		return new Rectangle(position.x, position.y, height, width);
 	}
 }

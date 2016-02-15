@@ -12,18 +12,18 @@ import org.newdawn.slick.SpriteSheet;
  *  
  */
 public class Character extends PhysicalEntity {
+	
+	// Render attributes
+	protected SpriteSheet spriteSheet;
+	protected Animation[] animations;
 
+	// Physics attributes
 	protected boolean moving ;
 	protected int direction ;
 	protected int moveSpeed ;
+	
+	// Specific attributes
 	protected String name ;
-	
-	protected int height ;
-	protected int width ;
-	
-	protected SpriteSheet sprite ;
-	
-	protected Animation animations [] ;
 	
 	/**
 	 * @param name : character name
@@ -36,7 +36,7 @@ public class Character extends PhysicalEntity {
 		this.setName(name) ;
 		this.width = width ;	
 		this.height = height ;
-		this.sprite = new SpriteSheet(file, this.width, this.height) ;
+		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
 		this.setMoving(false) ;
 		this.setDirection(1) ;
 		this.setMoveSpeed(2);
@@ -115,11 +115,11 @@ public class Character extends PhysicalEntity {
 	 * @throws SlickException
 	 */
 	public void setSpriteSheet(String path, int x, int y) throws SlickException {
-		this.sprite = new SpriteSheet(path, x, y) ;
+		this.spriteSheet = new SpriteSheet(path, x, y) ;
 	}
 	
 	public Image getSprite(int x, int y) {
-		return this.sprite.getSprite(x, y) ;
+		return this.spriteSheet.getSprite(x, y) ;
 	}
 	
 	public int getHeight() {
@@ -131,7 +131,7 @@ public class Character extends PhysicalEntity {
 	}
 	
 	public SpriteSheet getSpriteSheet() {
-		return this.sprite ;
+		return this.spriteSheet ;
 	}
 	
 	public void setName(String name) {
