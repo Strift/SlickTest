@@ -3,7 +3,6 @@ package slicktest;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Renderable;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -15,7 +14,7 @@ import org.newdawn.slick.SpriteSheet;
  * @author elythiel
  *  
  */
-public class Character implements Renderable {
+public class Character {
 	
 	protected int locationX ;
 	protected int locationY ;
@@ -92,11 +91,6 @@ public class Character implements Renderable {
     public void render (Graphics g) {
     	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], locationX, locationY);
     }
-
-	@Override
-	public void draw(float arg0, float arg1) {
-		
-	}
 	
 	public void setLocation(int locationX, int locationY) {
 		this.locationX = locationX ;
