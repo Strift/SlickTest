@@ -14,13 +14,16 @@
   </data>
  </layer>
  <layer name="ground" width="50" height="20">
+  <properties>
+   <property name="level" value="0"/>
+  </properties>
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBSMglEwWMBpID5DQAybmsEGGBkZGJgY8YthUzMKRgG1gRETA4MxEJsAcQ7TQLuGPJABdPcCNIzPL5JALEWk+GYg3oIHUwtg8wMMmwKxGRb/+ANxABaz0MVBfpAHliUKeHA78/DAe4cJDmRhYKgC0uV4MEhNEAsVEyENwFpm4rAky+D2D7H+QPYPvrgbKEyqPwYrBgB8cZMsoA8AAA==
   </data>
  </layer>
  <layer name="foreground1" width="50" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACwtkZmAIHAZYepjggQ5HauFRMApGEqhgYmCoBOIqplF3DDSgRhgMhXAMZ0KlhyroZUKlhyo4zIRKj4JRMApGwSgYBeQCAF+hRA2gDwAA
+   H4sIAAAAAAAACwtkZmAIHAZYepjggQ5HauFRMApoCcKZBtoFqKAC6J5KIK4i0V29VPYHue6gFFDbH5QASsIA5o+BCkdSACwPYMsLgyk+CAGYW7G5eSj54zATKo0MhpI/8AFsfhsFo2AUjIJRQH0AAGFhxFKgDwAA
   </data>
  </layer>
 </map>
