@@ -1,6 +1,7 @@
 package slicktest;
 
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
@@ -84,6 +85,10 @@ public class Character {
     		animation.addFrame(this.getSprite(x, y), 100);
     	}
     	return animation ;
+    }
+    
+    public void render (Graphics g) {
+    	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], locationX, locationY);
     }
 	
 	public void setLocation(int locationX, int locationY) {

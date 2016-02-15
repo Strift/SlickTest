@@ -31,17 +31,9 @@ public class Game extends BasicGame {
 		for (int i = 0 ; i < environment.getMaps().get(0).getTiledMap().getLayerCount() ; i++) {
 			environment.getMaps().get(0).getTiledMap().render(0, 0, i);
 			if(environment.getMaps().get(0).getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
-				drawPlayer(g) ;
+				environment.getPlayer().render(g);
 			}
 		}
-	}
-	
-	private void drawPlayer(Graphics g) {
-		g.drawAnimation(
-	    	environment.getPlayer().getAnimations()[environment.getPlayer().getDirection() + (environment.getPlayer().isMoving() ? 4 : 0)], 
-			environment.getPlayer().getLocationX(), 
-			environment.getPlayer().getLocationY()
-		);
 	}
 	
 	/**
