@@ -6,10 +6,20 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
+/**
+ * This class represents the game itself. It is encapsulated within the Application class.
+ * It handles the game update, the screen rendering and the user input.
+ * @author Strift
+ *
+ */
 public class Game extends BasicGame {
 	
-	private Environment environment;
+	protected Environment environment;
 	
+	/**
+	 * Default constructor
+	 * @param title
+	 */
 	public Game(String title) {
 		super(title);
 	}
@@ -26,24 +36,27 @@ public class Game extends BasicGame {
 	}
 	
 	/**
-	 * This method moves all the Graphics using the player location.
+	 * This method translates the graphics using the player location.
 	 * Player is always at center of the screen.
 	 * @param gc Game Container
 	 * @param g Graphics
 	 */
-	private void centerCamera(GameContainer gc, Graphics g) {
+	protected void centerCamera(GameContainer gc, Graphics g) {
 		int cameraX = environment.getPlayer().getLocationX() - (gc.getWidth() / 2) ;
 		int cameraY = environment.getPlayer().getLocationY() - (gc.getHeight() / 2) ;
 		
-		if(cameraX < 0) cameraX = 0;
-		if(cameraY < 0) cameraY = 0 ;
+		if(cameraX < 0) {
+			cameraX = 0;
+		}
+		if(cameraY < 0) {
+			cameraY = 0 ;
+		}
 		g.translate(-cameraX, -cameraY);
 	}
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		environment = new Environment();
-    	    	
 	}
 	
     @Override

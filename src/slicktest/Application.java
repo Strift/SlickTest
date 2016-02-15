@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
  *
  */
 public class Application {
-	
+
 	enum State {
 		Uninitialized, Initialized, Running, Exiting
 	}
