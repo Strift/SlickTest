@@ -3,6 +3,7 @@ package slicktest;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Renderable;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
@@ -14,21 +15,21 @@ import org.newdawn.slick.SpriteSheet;
  * @author elythiel
  *  
  */
-public class Character {
+public class Character implements Renderable {
 	
-	private int locationX ;
-	private int locationY ;
-	private boolean moving ;
-	private int direction ;
-	private int moveSpeed ;
-	private String name ;
+	protected int locationX ;
+	protected int locationY ;
+	protected boolean moving ;
+	protected int direction ;
+	protected int moveSpeed ;
+	protected String name ;
 	
-	public int height ;
-	public int width ;
+	protected int height ;
+	protected int width ;
 	
-	private SpriteSheet sprite ;
+	protected SpriteSheet sprite ;
 	
-	private Animation animations [] ;
+	protected Animation animations [] ;
 	
 	/**
 	 * @param name : character name
@@ -39,7 +40,8 @@ public class Character {
 	 */
 	public Character(String name, String file, int width, int height) throws SlickException {
 		this.setName(name) ;
-		this.width = width ;	this.height = height ;
+		this.width = width ;	
+		this.height = height ;
 		this.sprite = new SpriteSheet(file, this.width, this.height) ;
 		this.setMoving(false) ;
 		this.setDirection(1) ;
@@ -90,6 +92,11 @@ public class Character {
     public void render (Graphics g) {
     	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], locationX, locationY);
     }
+
+	@Override
+	public void draw(float arg0, float arg1) {
+		
+	}
 	
 	public void setLocation(int locationX, int locationY) {
 		this.locationX = locationX ;
