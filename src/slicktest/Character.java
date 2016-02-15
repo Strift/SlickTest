@@ -7,10 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
 /**
- * 
- * This class is the character class. It defines a character with his informations,
- * like current location or direction.
- * 
+ * This class represents a character within the game.
  * @author elythiel
  *  
  */
