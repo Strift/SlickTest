@@ -34,10 +34,6 @@ public class Environment {
 	}
 	
 	public void render(Graphics g) {
-		renderMap(g);
-	}
-	
-	private void renderMap(Graphics g) {
 		for (int i = 0 ; i < map.getTiledMap().getLayerCount() ; i++) {
 			map.getTiledMap().render(0, 0, i);
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {

@@ -32,13 +32,11 @@ public class Game extends BasicGame {
 	 * @param g Graphics
 	 */
 	private void centerCamera(GameContainer gc, Graphics g) {
-		
 		int cameraX = environment.getPlayer().getLocationX() - (gc.getWidth() / 2) ;
 		int cameraY = environment.getPlayer().getLocationY() - (gc.getHeight() / 2) ;
 		
 		if(cameraX < 0) cameraX = 0;
 		if(cameraY < 0) cameraY = 0 ;
-		
 		g.translate(-cameraX, -cameraY);
 	}
 
