@@ -22,7 +22,7 @@ public class Game extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		this.centerCamera(gc, g);
-		environment.getMaps().get(0).render(0, 0);
+		environment.getMaps().get(0).getTiledMap().render(0, 0); // this will change once the class will be renderable
     	g.drawAnimation(
     		environment.getPlayer().getAnimations()[environment.getPlayer().getDirection() + (environment.getPlayer().isMoving() ? 4 : 0)], 
 			environment.getPlayer().getLocationX(), 
@@ -37,10 +37,14 @@ public class Game extends BasicGame {
 	 * @param g Graphics
 	 */
 	private void centerCamera(GameContainer gc, Graphics g) {
-		int cameraLocation = gc.getWidth() / 2 - environment.getPlayer().getLocationX() ;
+		int playerLocation = environment.getPlayer().getLocationX();
+		int mapSize = environment.getMaps().get(0).getRealWidth();
+		int screenSize = gc.getWidth();
+		int cameraLocation = playerLocation - screenSize / 2;
 		if(cameraLocation < 0) {
-			g.translate(cameraLocation, 0);
+			cameraLocation = 0;
 		}
+		g.translate(-cameraLocation, 0);
 	}
 
 	@Override
