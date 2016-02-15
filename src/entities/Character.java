@@ -21,6 +21,8 @@ public class Character extends PhysicalEntity {
 	protected boolean moving ;
 	protected int direction ;
 	protected int moveSpeed ;
+	protected int height ;
+	protected int width ;
 	
 	// Specific attributes
 	protected String name ;
