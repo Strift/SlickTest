@@ -46,19 +46,19 @@ public class Game extends BasicGame {
 	
 	/**
 	 * This method moves all the Graphics using the player location.
-	 * Player is always at center of the screen (x axe).
+	 * Player is always at center of the screen.
 	 * @param gc Game Container
 	 * @param g Graphics
 	 */
 	private void centerCamera(GameContainer gc, Graphics g) {
-		int playerLocation = environment.getPlayer().getLocationX();
-		int mapSize = environment.getMaps().get(0).getRealWidth();
-		int screenSize = gc.getWidth();
-		int cameraLocation = playerLocation - screenSize / 2;
-		if(cameraLocation < 0) {
-			cameraLocation = 0;
-		}
-		g.translate(-cameraLocation, 0);
+		
+		int cameraX = environment.getPlayer().getLocationX() - (gc.getWidth() / 2) ;
+		int cameraY = environment.getPlayer().getLocationY() - (gc.getHeight() / 2) ;
+		
+		if(cameraX < 0) cameraX = 0;
+		if(cameraY < 0) cameraY = 0 ;
+		
+		g.translate(-cameraX, -cameraY);
 	}
 
 	@Override

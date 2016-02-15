@@ -1,29 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="16" tileheight="16" nextobjectid="18">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="16" tileheight="16" nextobjectid="31">
+ <properties>
+  <property name="startX" value="1"/>
+  <property name="startY" value="14"/>
+ </properties>
  <tileset firstgid="1" name="tile2d" tilewidth="16" tileheight="16" spacing="2" margin="2" tilecount="1350" columns="54">
   <image source="../images/tile2d.png" width="982" height="452"/>
  </tileset>
- <layer name="background2" width="50" height="20">
+ <layer name="background2" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3WMQ0AIBAEsBtYcfJy8K8FE3yApEM9tJIUHDahwRoAwO9ufwJetgFF/S29oA8AAA==
+   H4sIAAAAAAAAC+3POxGAMBQAwTchbZxEDhJpkRAjUYMHBmby2WL7uxoRFT5W4AdnBoB9tQNY3Q0wiSu9M2LTzh+j6Yt4ACqTO/RwFwAA
   </data>
  </layer>
- <layer name="background1" width="50" height="20">
+ <layer name="background1" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC5NmZmCQHgY4cJjggQ7H0fhAxTBQwcTAUAnEVUwMNAXk2kOp+0jRT6+wwGVXOJQtBU1rMszY9WIDEYwMDJGMhNXhM5sce7Hp64X6IwCa1oKIMA/m/j4g7mck7B9ks9HtJ8ZebH5F19dLQjpAdz86TUz8kBJepOghxh+E3E+Of6gN8PmDVPcPpH+w+YNS9w+Ef5D9QW33E/LPBSD7IhBfYkRlo8sRAw4z0d79+PzDjhSO7GhpA51PCMDMpxegt31DBexlHsWjeBTjwgB0zR9KoA8AAA==
+   H4sIAAAAAAAAC+2SUQ7CIAyGCzzsDm6H0r2oJ3F6h+mhvIB6InmAZGtwUJgQsV/SjGVr+/+lrQJoK4hdJVF6jnwf87AMEuCs4yLhq8T2SdVHyc81i0+99ua8MbvWKXeui4MAOAr/f0u1Y/q68kbjY2t2rQ+oZ/VfddyE38+0Nu4f0tflFeeNhD3A+vEz5H4o86LkhPjw6Y/xszZLPqj6S/px+UjVX8LP1Eeq/g5ofh76/NTxEvMz/hbCXa43/97jw+WnmcyxQbuB333Y+rnI3Y9h/pmTqiMYhmEYhvl93levGIlwFwAA
   </data>
  </layer>
- <layer name="ground" width="50" height="20">
+ <layer name="ground" width="50" height="30">
   <properties>
    <property name="level" value="0"/>
   </properties>
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBSMglEwWMBpID5DQAybmsEGGBkZGJgY8YthUzMKRgG1gRETA4MxEJsAcQ7TQLuGPJABdPcCNIzPL5JALEWk+GYg3oIHUwtg8wMMmwKxGRb/+ANxABaz0MVBfpAHliUKeHA78/DAe4cJDmRhYKgC0uV4MEhNEAsVEyENwFpm4rAky+D2D7H+QPYPvrgbKEyqPwYrBgB8cZMsoA8AAA==
+   H4sIAAAAAAAAC+2VQQrCMBBFk3TjFXTT3kJvoRs9RqGn6EVyA72FrjyRX6hQSqfQMXWI/Q8elCzCmwRS5wghhOTEHT6sIxLgvXPBW1esly3cWUco6bcf4cmwZS5Se8o5pLsdW7/C24QSUnvKOaS9huvvGUq8JdWEbfEfEkIIIVqewbpATwmr7nuT8f/wDC+wDvNtFrq/PfY9KHrqL3pSzvLpj52/JCrPbcw4kOTPC7R2wMBwFwAA
   </data>
  </layer>
- <layer name="foreground1" width="50" height="20">
+ <layer name="foreground1" width="50" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAACwtkZmAIHAZYepjggQ5HauFRMApoCcKZBtoFqKAC6J5KIK4i0V29VPYHue6gFFDbH5QASsIA5o+BCkdSACwPYMsLgyk+CAGYW7G5eSj54zATKo0MhpI/8AFsfhsFo2AUjIJRQH0AAGFhxFKgDwAA
+   H4sIAAAAAAAAC+3T0Q1AMBQFUKkxOlW/zIAFsIMZMIsZsI7704SkiTx9UuSe5MZfc9+rujzL3A9if5LUe9QK0ZMKk7rBWYM+LdIJe/XKc9ztEUt7jhgxO/BzpNqjhH8Dobfwpvu44ruGOmvNUeKcCqkf3Mtszt8jjTksMuCcEZkS3W9oNimHLDhnRbYP/adEREREREQSO50YTEBwFwAA
   </data>
  </layer>
+ <objectgroup name="events" width="1" height="1">
+  <object id="30" name="tp1" type="teleport" x="304" y="184" width="40" height="44">
+   <properties>
+    <property name="x" value="2"/>
+    <property name="y" value="25"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

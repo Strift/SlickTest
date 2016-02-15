@@ -22,6 +22,9 @@ public class Character {
 	private int moveSpeed ;
 	private String name ;
 	
+	public int height ;
+	public int width ;
+	
 	private SpriteSheet sprite ;
 	
 	private Animation animations [] ;
@@ -35,7 +38,8 @@ public class Character {
 	 */
 	public Character(String name, String file, int width, int height) throws SlickException {
 		this.setName(name) ;
-		this.sprite = new SpriteSheet(file, width, height) ;
+		this.width = width ;	this.height = height ;
+		this.sprite = new SpriteSheet(file, this.width, this.height) ;
 		this.setMoving(false) ;
 		this.setDirection(1) ;
 		this.setMoveSpeed(2);
