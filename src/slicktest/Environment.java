@@ -12,13 +12,9 @@ public class Environment {
 	private Player player ;
 
 	public Environment() throws SlickException {
-		this.map = new Map("/maps/map2d.tmx") ;
-		this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
-//    	this.player.setPosition(
-//    			(Integer.parseInt(map.getTiledMap().getMapProperty("startX", "0"))-1) * Map.TILE_WIDTH, 
-//    			Integer.parseInt(map.getTiledMap().getMapProperty("startY", "0")) * Map.TILE_HEIGHT - player.getHeight()
-//    		);
-		this.player.setPosition(map.getInitialPosition());
+		map = new Map("/maps/map2d.tmx") ;
+		player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
+		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
 	public void update() {
