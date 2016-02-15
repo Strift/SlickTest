@@ -32,14 +32,14 @@ public class Application {
 	public void start() {
 		try {
 			if (state != State.Uninitialized) {
-				throw new MyException("Application must be uninitialized to start.");
+				throw new Error("Application must be uninitialized to start.");
 			}
 			appgc = new AppGameContainer(new Game(name), 640, 320, false);
 			appgc.setTargetFrameRate(60);
 	        appgc.setShowFPS(false);
 	        state = State.Initialized;
 	        this.run();
-		} catch (MyException e) {
+		} catch (Error e) {
 			e.printStackTrace();
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -52,11 +52,11 @@ public class Application {
 	protected void run() {
 		try {
 			if (state != State.Initialized) {
-				throw new MyException("Application must be initialized to run.");
+				throw new Error("Application must be initialized to run.");
 			}
 			state = State.Running;
 	        appgc.start();
-		} catch (MyException e) {
+		} catch (Error e) {
 			e.printStackTrace();
 		} catch (SlickException e) {
 			e.printStackTrace();
