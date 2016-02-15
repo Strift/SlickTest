@@ -22,18 +22,7 @@ public class Game extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		this.centerCamera(gc, g);
-		
-//		environment.getMaps().get(0).getTiledMap().render(0, 0); // this will change once the class will be renderable
-		drawMap(g) ;
-	}
-	
-	private void drawMap(Graphics g) {
-		for (int i = 0 ; i < environment.getMaps().get(0).getTiledMap().getLayerCount() ; i++) {
-			environment.getMaps().get(0).getTiledMap().render(0, 0, i);
-			if(environment.getMaps().get(0).getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
-				environment.getPlayer().render(g);
-			}
-		}
+		environment.render(g);
 	}
 	
 	/**
@@ -55,7 +44,6 @@ public class Game extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
-		// TODO Auto-generated method stub
 		environment = new Environment();
     	    	
 	}
