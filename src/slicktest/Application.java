@@ -3,6 +3,12 @@ package slicktest;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
+/**
+ * This class represents the application.
+ * It can be started and run
+ * @author Strift
+ *
+ */
 public class Application {
 	
 	enum State {
@@ -13,10 +19,16 @@ public class Application {
 	protected String name = "Astralol";
 	protected AppGameContainer appgc;
 	
+	/**
+	 * Default constructor
+	 */
 	public Application() {
 		state = State.Uninitialized;
 	}
 	
+	/**
+	 * Used to start the program
+	 */
 	public void start() {
 		try {
 			if (state != State.Uninitialized) {
@@ -34,7 +46,10 @@ public class Application {
 		}
 	}
 	
-	public void run() {
+	/**
+	 * Automatically called by the start method
+	 */
+	protected void run() {
 		try {
 			if (state != State.Initialized) {
 				throw new MyException("Application must be initialized to run.");
