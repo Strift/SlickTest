@@ -9,7 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public abstract class PhysicalEntity extends Entity {
 	
-	Vector2f position;
+	protected Vector2f position;
 	
 	/**
 	 * Default constructor
@@ -20,11 +20,19 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
+	 * Get the position vector
+	 * @return
+	 */
+	public Vector2f getPosition() {
+		return position;
+	}
+	
+	/**
 	 * Set the position vector
 	 * @param x
 	 * @param y
 	 */
-	public void setPosition(int x, int y) {
+	public void setPosition(float x, float y) {
 		position.x = x;
 		position.y = y;
 	}

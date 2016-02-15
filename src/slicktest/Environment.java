@@ -14,7 +14,7 @@ public class Environment {
 	public Environment() throws SlickException {
 		this.map = new Map("/maps/map2d.tmx") ;
 		this.player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
-    	this.player.setLocation(
+    	this.player.setPosition(
     			(Integer.parseInt(map.getTiledMap().getMapProperty("startX", "0"))-1) * Map.TILE_WIDTH, 
     			Integer.parseInt(map.getTiledMap().getMapProperty("startY", "0")) * Map.TILE_HEIGHT - player.getHeight()
     		);
@@ -25,12 +25,14 @@ public class Environment {
         	if(player.getDirection() == 0) {
         		// do nothing
         	} else if (player.getDirection() == 1) {
-        		if (player.getLocationX() <= map.getWidth()* Map.TILE_WIDTH - 32) 
-        			this.player.setLocationX(player.getLocationX()+player.getMoveSpeed());
+        		if (player.getPosition().x <= map.getWidth()* Map.TILE_WIDTH - 32) {
+        			player.setPosition(player.getPosition().x+player.getMoveSpeed(), player.getPosition().y);
+        		}
         	} else if (player.getDirection() == 2) {
         	} else if (player.getDirection() == 3) {
-        		if (player.getLocationX() > 1)
-        			this.player.setLocationX(player.getLocationX()-player.getMoveSpeed());
+        		if (player.getPosition().x > 1) {
+        			player.setPosition(player.getPosition().x-player.getMoveSpeed(), player.getPosition().y);
+        		}
         	}
     	}
 		checkTeleport() ;
@@ -56,12 +58,12 @@ public class Environment {
 			// If object is a teleporter, we check if the player is in the object's box
 			// Then we teleport the player to his new Location
 			if("teleport".equals(tiledMap.getObjectType(0, i))
-				&&	player.getLocationX() > tiledMap.getObjectX(0, i)
-				&&	player.getLocationX() + player.getWidth() < tiledMap.getObjectX(0, i) + tiledMap.getObjectWidth(0, i)
-				&&	player.getLocationY() - player.getHeight() < tiledMap.getObjectY(0, i)
-				&& player.getLocationY() < tiledMap.getObjectY(0, i) + tiledMap.getObjectHeight(0, i) 
+				&&	player.getPosition().x > tiledMap.getObjectX(0, i)
+				&&	player.getPosition().x + player.getWidth() < tiledMap.getObjectX(0, i) + tiledMap.getObjectWidth(0, i)
+				&&	player.getPosition().y - player.getHeight() < tiledMap.getObjectY(0, i)
+				&& player.getPosition().y < tiledMap.getObjectY(0, i) + tiledMap.getObjectHeight(0, i) 
 			) {
-				player.setLocation(
+				player.setPosition(
 						Integer.parseInt(tiledMap.getObjectProperty(0, i, "x", "0")) * 16,
 						Integer.parseInt(tiledMap.getObjectProperty(0, i, "y", "0")) * 16 - player.getHeight());
 			}	

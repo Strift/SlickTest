@@ -11,10 +11,8 @@ import org.newdawn.slick.SpriteSheet;
  * @author elythiel
  *  
  */
-public class Character {
-	
-	protected int locationX ;
-	protected int locationY ;
+public class Character extends PhysicalEntity {
+
 	protected boolean moving ;
 	protected int direction ;
 	protected int moveSpeed ;
@@ -86,13 +84,8 @@ public class Character {
     }
     
     public void render (Graphics g) {
-    	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], locationX, locationY);
+    	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], position.x, position.y);
     }
-	
-	public void setLocation(int locationX, int locationY) {
-		this.locationX = locationX ;
-		this.locationY = locationY ;
-	}
 	
 	public void setDirection(int direction) {
 		this.direction = direction ;
@@ -149,24 +142,8 @@ public class Character {
 		return this.name ;
 	}
 	
-	public void setLocationX(int locationX) {
-		this.locationX = locationX ;
-	}
-	
-	public void setLocationY(int locationY) {
-		this.locationY = locationY ;
-	}
-	
 	public void setMoveSpeed(int moveSpeed) {
 		this.moveSpeed = moveSpeed ;
-	}
-	
-	public int getLocationX() {
-		return this.locationX ;
-	}
-	
-	public int getLocationY() {
-		return this.locationY ;
 	}
 	
 	public int getMoveSpeed() {
@@ -174,19 +151,19 @@ public class Character {
 	}
 	
 	public void moveForward() {
-		this.locationY += 1 ;
+		this.position.y += 1 ;
 	}
 	
 	public void moveBackward() {
-		this.locationY -= 1 ;
+		this.position.y -= 1 ;
 	}
 	
 	public void moveLeft() {
-		this.locationX -= 1 ;
+		this.position.x -= 1 ;
 	}
 	
 	public void moveRight() {
-		this.locationX += 1 ;
+		this.position.y += 1 ;
 	}
 	
 }

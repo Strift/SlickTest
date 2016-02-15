@@ -42,8 +42,8 @@ public class Game extends BasicGame {
 	 * @param g Graphics
 	 */
 	protected void centerCamera(GameContainer gc, Graphics g) {
-		int cameraX = environment.getPlayer().getLocationX() - (gc.getWidth() / 2) ;
-		int cameraY = environment.getPlayer().getLocationY() - (gc.getHeight() / 2) ;
+		float cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2) ;
+		float cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2) ;
 		
 		if(cameraX < 0) {
 			cameraX = 0;
