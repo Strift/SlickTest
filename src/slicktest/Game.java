@@ -14,7 +14,7 @@ import org.newdawn.slick.SlickException;
  */
 public class Game extends BasicGame {
 	
-	protected Environment environment;
+	private Environment environment;
 	
 	/**
 	 * Default constructor
@@ -41,7 +41,7 @@ public class Game extends BasicGame {
 	 * @param gc Game Container
 	 * @param g Graphics
 	 */
-	protected void centerCamera(GameContainer gc, Graphics g) {
+	private void centerCamera(GameContainer gc, Graphics g) {
 		float cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2) ;
 		float cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2) ;
 		

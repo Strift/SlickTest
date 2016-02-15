@@ -17,9 +17,9 @@ public class Application {
 		Uninitialized, Initialized, Running, Exiting
 	}
 	
-	protected State state;
-	protected String name = "Astralol";
-	protected AppGameContainer appgc;
+	private State state;
+	private String name = "Astralol";
+	private AppGameContainer appgc;
 	
 	/**
 	 * Default constructor
@@ -51,7 +51,7 @@ public class Application {
 	/**
 	 * Automatically called by the start method
 	 */
-	protected void run() {
+	private void run() {
 		try {
 			if (state != State.Initialized) {
 				throw new Error("Application must be initialized to run.");
