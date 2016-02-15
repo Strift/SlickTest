@@ -1,4 +1,4 @@
-package game;
+package slicktest;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
