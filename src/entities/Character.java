@@ -18,7 +18,6 @@ public class Character extends PhysicalEntity {
 	protected Animation[] animations;
 
 	// Physics attributes
-	protected boolean moving ;
 	protected int direction ;
 	protected int height ;
 	protected int width ;
@@ -84,10 +83,6 @@ public class Character extends PhysicalEntity {
 	
 	public int getDirection() {
 		return this.direction ;
-	}
-	
-	public boolean isMoving() {
-		return (movement.x != 0 || movement.y != 0);
 	}
 	
 	/**

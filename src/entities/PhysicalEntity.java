@@ -84,6 +84,14 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
+	 * Return true if the entity's movement vector is non null
+	 * @return boolean
+	 */
+	public boolean isMoving() {
+		return (movement.x != 0 || movement.y != 0);
+	}
+	
+	/**
 	 * Get the Entity move speed
 	 * @return int
 	 */
