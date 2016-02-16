@@ -52,14 +52,22 @@ public class Game extends BasicGame {
 	 * @param g Graphics
 	 */
 	private void centerCamera(GameContainer gc, Graphics g) {
-		float cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2) ;
-		float cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2) ;
+		float cameraX;
+		float cameraY;
 		
-		if(cameraX < 0) {
+		if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
 			cameraX = 0;
+		} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - gc.getWidth()/2) {
+			cameraX = environment.getMap().getWidth() - gc.getWidth();
+		} else {
+			cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2);
 		}
-		if(cameraY < 0) {
+		if(environment.getPlayer().getPosition().y < gc.getHeight()/2) {
 			cameraY = 0 ;
+		} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - gc.getHeight()/2) {
+			cameraY = environment.getMap().getHeight() - gc.getHeight();
+		} else {
+			cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2);
 		}
 		g.translate(-cameraX, -cameraY);
 	}
