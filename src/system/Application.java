@@ -58,6 +58,7 @@ public class Application {
 			}
 			state = State.Running;
 	        appgc.start();
+	        state = State.Exiting;
 		} catch (Error e) {
 			e.printStackTrace();
 		} catch (SlickException e) {

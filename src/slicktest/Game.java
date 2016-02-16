@@ -16,6 +16,7 @@ import entities.Character;
 public class Game extends BasicGame {
 	
 	private Environment environment;
+	boolean running;
 	
 	/**
 	 * Default constructor
@@ -23,10 +24,15 @@ public class Game extends BasicGame {
 	 */
 	public Game(String title) {
 		super(title);
+		running = true;
 	}
 	
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
+		if (running == false){
+			gc.exit();
+			return;
+		}
 		environment.update();
 	}
 
@@ -98,6 +104,9 @@ public class Game extends BasicGame {
     		break;
     	case Input.KEY_SPACE:
     		environment.getPlayer().setSpeed(4);
+    		break;
+    	case Input.KEY_ESCAPE:
+    		running = false;
     		break;
         }
     }
