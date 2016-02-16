@@ -45,7 +45,7 @@ public class Environment {
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
 				Player player = this.getPlayer();
 				g.drawAnimation(
-						player.getAnimation(player.getSpriteNum() + (player.isMoving() ? 4 : 0)),
+						player.getAnimation(player.getSpriteIndex() + (player.isMoving() ? 4 : 0)),
 						player.getPosition().x, 
 						player.getPosition().y
 					);

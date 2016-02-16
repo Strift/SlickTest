@@ -1,7 +1,6 @@
 package entities;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
@@ -16,15 +15,15 @@ public class Character extends PhysicalEntity {
 	public enum Direction {
 		Forward, Backward, Left, Right
 	}
+
+	// Physics attributes
+	protected Direction direction;
+	protected int height;
+	protected int width;
 	
 	// Render attributes
 	protected SpriteSheet spriteSheet;
 	protected Animation[] animations;
-
-	// Physics attributes
-	protected Direction direction ;
-	protected int height ;
-	protected int width ;
 	
 	/**
 	 * @param file : spritesheet file path
@@ -49,7 +48,7 @@ public class Character extends PhysicalEntity {
 		if(this.animations == null) {
 			this.animations = new Animation[8] ;
 		}
-		int nbSprite = this.getSpriteSheet().getHorizontalCount() ;
+		int nbSprite = spriteSheet.getHorizontalCount() ;
 		// Not moving animations
 		for(int i = 0 ; i < 4 ; i++) 
 			this.animations[i] = loadAnim(0, 1, i) ;
@@ -58,12 +57,13 @@ public class Character extends PhysicalEntity {
 			this.animations[i+4] = loadAnim(1, nbSprite, i) ;
 	}
 	
-	public Animation[] getAnimations() {
-		return this.animations ;
-	}
-	
-	public Animation getAnimation(int i) {
-		return this.animations[i] ;
+	/**
+	 * Get the animation animation associated with index
+	 * @param index
+	 * @return
+	 */
+	public Animation getAnimation(int index) {
+		return this.animations[index] ;
 	}
 	
 	/**
@@ -76,7 +76,7 @@ public class Character extends PhysicalEntity {
     private Animation loadAnim(int startX, int endX, int y) {
     	Animation animation = new Animation() ;
     	for(int x = startX ; x < endX ; x++) {
-    		animation.addFrame(this.getSprite(x, y), 100);
+    		animation.addFrame(spriteSheet.getSprite(x, y), 100);
     	}
     	return animation ;
     }
@@ -97,7 +97,27 @@ public class Character extends PhysicalEntity {
 		return direction;
 	}
 	
-	public int getSpriteNum() {
+	/**
+	 * Get the character's height in pixels
+	 * @return int
+	 */
+	public int getHeight() {
+		return height;
+	}
+	
+	/**
+	 * Get the character's width in pixels
+	 * @return int
+	 */
+	public int getWidth() {
+		return width;
+	}
+	
+	/**
+	 * Get the sprite index in sheet associated with current direction
+	 * @return
+	 */
+	public int getSpriteIndex() {
 		if (direction == Direction.Forward) {
 			return 2;
 		} else if (direction == Direction.Backward) {
@@ -109,52 +129,9 @@ public class Character extends PhysicalEntity {
 		}		
 	}
 	
-	/**
-	 * 
-	 * @param path : sprite sheet file path
-	 * @param x
-	 * @param y
-	 * @throws SlickException
-	 */
-	public void setSpriteSheet(String path, int x, int y) throws SlickException {
-		this.spriteSheet = new SpriteSheet(path, x, y) ;
-	}
-	
-	public Image getSprite(int x, int y) {
-		return this.spriteSheet.getSprite(x, y) ;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-
 	@Override
 	public Rectangle getHitbox() {
 		return new Rectangle(position.x, position.y, width, height);
-	}
-	
-	public SpriteSheet getSpriteSheet() {
-		return this.spriteSheet ;
-	}
-	
-	public void moveForward() {
-		this.position.y += 1 ;
-	}
-	
-	public void moveBackward() {
-		this.position.y -= 1 ;
-	}
-	
-	public void moveLeft() {
-		this.position.x -= 1 ;
-	}
-	
-	public void moveRight() {
-		this.position.y += 1 ;
 	}
 	
 }
