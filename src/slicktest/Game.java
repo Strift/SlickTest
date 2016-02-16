@@ -74,7 +74,7 @@ public class Game extends BasicGame {
     		environment.getPlayer().setDirection(1) ;
     		environment.getPlayer().setMoving(true);
     	} else if (key == Input.KEY_SPACE) {
-    		environment.getPlayer().setMoveSpeed(4);
+    		environment.getPlayer().setSpeed(4);
     	}
     };
     
@@ -83,7 +83,7 @@ public class Game extends BasicGame {
         if(key == Input.KEY_UP || key == Input.KEY_DOWN || key == Input.KEY_LEFT || key == Input.KEY_RIGHT) {
         	environment.getPlayer().setMoving(false);
         } else if (key == Input.KEY_SPACE) {
-        	environment.getPlayer().setMoveSpeed(2);
+        	environment.getPlayer().setSpeed(2);
         }
     }
 

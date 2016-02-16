@@ -23,7 +23,7 @@ public abstract class PhysicalEntity extends Entity {
 	
 	/**
 	 * Get the position vector
-	 * @return
+	 * @return Vector2f
 	 */
 	public Vector2f getPosition() {
 		return position;
@@ -45,6 +45,22 @@ public abstract class PhysicalEntity extends Entity {
 	public void setPosition(float x, float y) {
 		position.x = x;
 		position.y = y;
+	}
+	
+	/**
+	 * Get the Entity move speed
+	 * @return int
+	 */
+	public int getSpeed() {
+		return this.speed ;
+	}
+	
+	/**
+	 * Set the move speed
+	 * @param speed
+	 */
+	public void setSpeed(int speed) {
+		this.speed = speed ;
 	}
 	
 	/**

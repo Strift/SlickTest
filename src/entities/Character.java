@@ -25,7 +25,6 @@ public class Character extends PhysicalEntity {
 	protected int width ;
 	
 	/**
-	 * @param name : character name
 	 * @param file : spritesheet file path
 	 * @param width : sprites width
 	 * @param height : sprites height
@@ -37,12 +36,12 @@ public class Character extends PhysicalEntity {
 		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
 		this.setMoving(false) ;
 		this.setDirection(1) ;
-		this.setMoveSpeed(2);
+		this.setSpeed(2);
 		this.initAnimations() ;
 	}
 	
 	/**
-	 * This method initialize the character animations.
+	 * This method initializes the character's animations.
 	 * It sets animations in the corresponding field using the spritesheet given at instanciation.
 	 */
 	public void initAnimations() {
@@ -67,7 +66,7 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
-	 * This method create and return an animation based on the character spritesheet.
+	 * This method creates and returns an animation based on the character sprite sheet.
 	 * @param startX : first sprite to use in the animation
 	 * @param endX : last sprite to use in the animation
 	 * @param y : the line of the animation
@@ -135,14 +134,6 @@ public class Character extends PhysicalEntity {
 	
 	public SpriteSheet getSpriteSheet() {
 		return this.spriteSheet ;
-	}
-	
-	public void setMoveSpeed(int moveSpeed) {
-		this.speed = moveSpeed ;
-	}
-	
-	public int getMoveSpeed() {
-		return this.speed ;
 	}
 	
 	public void moveForward() {

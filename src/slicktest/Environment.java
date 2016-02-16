@@ -23,12 +23,12 @@ public class Environment {
         		// do nothing
         	} else if (player.getDirection() == 1) {
         		if (player.getPosition().x <= map.getWidth()* Map.TILE_WIDTH - 32) {
-        			player.setPosition(player.getPosition().x+player.getMoveSpeed(), player.getPosition().y);
+        			player.setPosition(player.getPosition().x+player.getSpeed(), player.getPosition().y);
         		}
         	} else if (player.getDirection() == 2) {
         	} else if (player.getDirection() == 3) {
         		if (player.getPosition().x > 1) {
-        			player.setPosition(player.getPosition().x-player.getMoveSpeed(), player.getPosition().y);
+        			player.setPosition(player.getPosition().x-player.getSpeed(), player.getPosition().y);
         		}
         	}
     	}

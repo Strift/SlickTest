@@ -10,6 +10,13 @@ import org.newdawn.slick.SlickException;
  */
 public class Player extends Character {
 	
+	/**
+	 * Constructor
+	 * @param file
+	 * @param x
+	 * @param y
+	 * @throws SlickException
+	 */
 	public Player(String file, int x, int y) throws SlickException {
 		super(file, x, y) ;
 	}
