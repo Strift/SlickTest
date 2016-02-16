@@ -2,6 +2,7 @@ package slicktest;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 import entities.Player;
@@ -14,27 +15,14 @@ public class Environment {
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
 		player = new Player("/images/sonic.png", 24, 32) ;
-		player.setPosition(map.getInitialPosition().x + player.getWidth()/2, map.getInitialPosition().y - player.getHeight());
+		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
 	public void update(int delta) {
-		System.out.println(player.getPosition().x);
 		if(player.isMoving()) {
-			switch(player.getDirection()) {
-			case Backward:
-				break;
-			case Forward:
-				break;
-			case Left:
-        		if (player.getPosition().x > 0) {
-        			player.update(delta);
-        		}
-				break;
-			case Right:
-        		if (player.getPosition().x < map.getRealWidth() - player.getWidth()) {
-        			player.update(delta);
-        		}
-				break;
+			Vector2f newPos = player.nextPosition(delta);
+			if (newPos.x >= 0 && newPos.x < map.getWidth() - player.getWidth()) {
+				player.setPosition(newPos);
 			}
     	}
 		//checkTeleport() ;
@@ -54,6 +42,7 @@ public class Environment {
 	 * This method checks if player isn't on a teleport.
 	 * It checks every objects with "teleport" type and verify if player is in the object's box.
 	 */
+	@SuppressWarnings("unused")
 	private void checkTeleport() {
 		TiledMap tiledMap = map.getTiledMap() ;
 		// We browse all objects on the map

@@ -125,8 +125,13 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	public void update(int delta) {
-		// Update position
-		position.x += movement.x * speed * Application.FRAME_RATE/delta;
-		position.y += movement.y * Application.FRAME_RATE/delta;	
+		// Update position	
+	}
+	
+	public Vector2f nextPosition(int delta) {
+		Vector2f newPos = position.copy();
+		newPos.x += movement.x * speed * Application.FRAME_RATE/delta;
+		newPos.y += movement.y * Application.FRAME_RATE/delta;
+		return newPos;
 	}
 }
