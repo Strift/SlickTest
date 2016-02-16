@@ -17,7 +17,7 @@ public class Environment {
 		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
-	public void update() {
+	public void update(int delta) {
 		if(player.isMoving()) {
 			switch(player.getDirection()) {
 			case Backward:
@@ -25,13 +25,13 @@ public class Environment {
 			case Forward:
 				break;
 			case Left:
-        		if (player.getPosition().x > 1) {
-        			player.setPosition(player.getPosition().x-player.getSpeed(), player.getPosition().y);
+        		if (player.getPosition().x > 0) {
+        			player.update(delta);
         		}
 				break;
 			case Right:
-        		if (player.getPosition().x <= map.getWidth()* Map.TILE_WIDTH - 32) {
-        			player.setPosition(player.getPosition().x+player.getSpeed(), player.getPosition().y);
+        		if (player.getPosition().x < map.getRealWidth() - player.getWidth()) {
+        			player.update(delta);
         		}
 				break;
 			}

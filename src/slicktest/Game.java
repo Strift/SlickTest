@@ -1,6 +1,7 @@
 package slicktest;
 
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -33,13 +34,15 @@ public class Game extends BasicGame {
 			gc.exit();
 			return;
 		}
-		environment.update();
+		environment.update(delta);
 	}
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		this.centerCamera(gc, g);
 		environment.render(g);
+		g.setColor(Color.red);
+		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - 10);
 	}
 	
 	/**

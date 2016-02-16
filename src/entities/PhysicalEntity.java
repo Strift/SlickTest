@@ -3,6 +3,8 @@ package entities;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
+import system.Application;
+
 /**
  * This class represents an entity that has a position and can move on the map
  * @author Strift
@@ -24,7 +26,7 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
-	 * Get the position vector
+	 * Get the entity's position
 	 * @return Vector2f
 	 */
 	public Vector2f getPosition() {
@@ -120,5 +122,11 @@ public abstract class PhysicalEntity extends Entity {
 	 */
 	public boolean collidesWith(PhysicalEntity other) {
 		return this.getHitbox().intersects(other.getHitbox());
+	}
+	
+	public void update(int delta) {
+		// Update position
+		position.x += movement.x * Application.FRAME_RATE/delta;
+		position.y += movement.y * Application.FRAME_RATE/delta;	
 	}
 }
