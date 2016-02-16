@@ -34,9 +34,9 @@ public class Character extends PhysicalEntity {
 	public Character(String file, int width, int height) throws SlickException {
 		this.width = width ;	
 		this.height = height ;
-		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
-		this.setDirection(Direction.Right) ;
-		this.setSpeed(2);
+		direction = Direction.Right;
+		spriteSheet = new SpriteSheet(file, this.width, this.height) ;
+		speed = 1;
 		this.initAnimations() ;
 	}
 	
