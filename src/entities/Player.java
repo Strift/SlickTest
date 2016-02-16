@@ -10,8 +10,8 @@ import org.newdawn.slick.SlickException;
  */
 public class Player extends Character {
 	
-	public Player(String name, String file, int x, int y) throws SlickException {
-		super(name, file, x, y) ;
+	public Player(String file, int x, int y) throws SlickException {
+		super(file, x, y) ;
 	}
 	
 }

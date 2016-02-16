@@ -1,6 +1,6 @@
 package entities;
 
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -11,8 +11,6 @@ import org.newdawn.slick.geom.Vector2f;
 public abstract class PhysicalEntity extends Entity {
 	
 	protected Vector2f position;
-	protected int height;
-	protected int width;
 	
 	/**
 	 * Default constructor
@@ -32,6 +30,14 @@ public abstract class PhysicalEntity extends Entity {
 	
 	/**
 	 * Set the position vector
+	 * @param position
+	 */
+	public void setPosition(Vector2f position) {
+		this.position = position;
+	}
+	
+	/**
+	 * Set the position vector
 	 * @param x
 	 * @param y
 	 */
@@ -41,18 +47,17 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
-	 * Set the position vector
-	 * @param position
+	 * Get the entity hitbox
+	 * @return Shape
 	 */
-	public void setPosition(Vector2f position) {
-		this.position = position;
-	}
+	public abstract Shape getHitbox();
 	
 	/**
-	 * Get the entity hitbox
-	 * @return Rectangle
+	 * Returns true if the two PhysicalEntities hitbox intersects
+	 * @param other
+	 * @return boolean
 	 */
-	public Rectangle getHitbox() {
-		return new Rectangle(position.x, position.y, height, width);
+	public boolean collidesWith(PhysicalEntity other) {
+		return this.getHitbox().intersects(other.getHitbox());
 	}
 }

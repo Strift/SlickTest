@@ -5,6 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Rectangle;
 
 /**
  * This class represents a character within the game.
@@ -24,9 +25,6 @@ public class Character extends PhysicalEntity {
 	protected int height ;
 	protected int width ;
 	
-	// Specific attributes
-	protected String name ;
-	
 	/**
 	 * @param name : character name
 	 * @param file : spritesheet file path
@@ -34,8 +32,7 @@ public class Character extends PhysicalEntity {
 	 * @param height : sprites height
 	 * @throws SlickException
 	 */
-	public Character(String name, String file, int width, int height) throws SlickException {
-		this.setName(name) ;
+	public Character(String file, int width, int height) throws SlickException {
 		this.width = width ;	
 		this.height = height ;
 		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
@@ -131,17 +128,14 @@ public class Character extends PhysicalEntity {
 	public int getWidth() {
 		return width;
 	}
+
+	@Override
+	public Rectangle getHitbox() {
+		return new Rectangle(position.x, position.y, width, height);
+	}
 	
 	public SpriteSheet getSpriteSheet() {
 		return this.spriteSheet ;
-	}
-	
-	public void setName(String name) {
-		this.name = name ;
-	}
-	
-	public String getName() {
-		return this.name ;
 	}
 	
 	public void setMoveSpeed(int moveSpeed) {

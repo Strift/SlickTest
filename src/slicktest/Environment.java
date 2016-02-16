@@ -13,7 +13,7 @@ public class Environment {
 
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
-		player = new Player("Martelle", "/images/sonic.png", 24, 32) ;
+		player = new Player("/images/sonic.png", 24, 32) ;
 		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
