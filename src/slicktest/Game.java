@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import entities.Character;
 
 /**
  * This class represents the game itself. It is encapsulated within the Application class.
@@ -63,17 +64,17 @@ public class Game extends BasicGame {
     public void keyPressed(int key, char c) {
     	switch (key) {
     	case Input.KEY_UP:
-    		environment.getPlayer().setDirection(0);
+    		environment.getPlayer().setDirection(Character.Direction.Backward);
     		break;
     	case Input.KEY_DOWN:
-    		environment.getPlayer().setDirection(2) ;
+    		environment.getPlayer().setDirection(Character.Direction.Forward) ;
     		break;
     	case Input.KEY_LEFT:
-    		environment.getPlayer().setDirection(3);
+    		environment.getPlayer().setDirection(Character.Direction.Left);
     		environment.getPlayer().addMovement(-1.f, 0.f);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().setDirection(1) ;
+    		environment.getPlayer().setDirection(Character.Direction.Right) ;
     		environment.getPlayer().addMovement(1.f, 0.f);
     		break;
     	case Input.KEY_SPACE:

@@ -13,12 +13,16 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public class Character extends PhysicalEntity {
 	
+	public enum Direction {
+		Forward, Backward, Left, Right
+	}
+	
 	// Render attributes
 	protected SpriteSheet spriteSheet;
 	protected Animation[] animations;
 
 	// Physics attributes
-	protected int direction ;
+	protected Direction direction ;
 	protected int height ;
 	protected int width ;
 	
@@ -32,7 +36,7 @@ public class Character extends PhysicalEntity {
 		this.width = width ;	
 		this.height = height ;
 		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
-		this.setDirection(1) ;
+		this.setDirection(Direction.Right) ;
 		this.setSpeed(2);
 		this.initAnimations() ;
 	}
@@ -77,12 +81,32 @@ public class Character extends PhysicalEntity {
     	return animation ;
     }
 	
-	public void setDirection(int direction) {
-		this.direction = direction ;
+    /**
+     * Set the direction that the character is facing
+     * @param direction
+     */
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 	
-	public int getDirection() {
-		return this.direction ;
+	/**
+	 * Get the direction that the character is facing
+	 * @return Direction
+	 */
+	public Direction getDirection() {
+		return direction;
+	}
+	
+	public int getSpriteNum() {
+		if (direction == Direction.Forward) {
+			return 2;
+		} else if (direction == Direction.Backward) {
+			return 0;
+		} else if (direction == Direction.Left) {
+			return 3;
+		} else {
+			return 1;
+		}		
 	}
 	
 	/**

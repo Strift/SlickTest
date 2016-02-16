@@ -19,18 +19,22 @@ public class Environment {
 
 	public void update() {
 		if(player.isMoving()) {
-        	if(player.getDirection() == 0) {
-        		// do nothing
-        	} else if (player.getDirection() == 1) {
-        		if (player.getPosition().x <= map.getWidth()* Map.TILE_WIDTH - 32) {
-        			player.setPosition(player.getPosition().x+player.getSpeed(), player.getPosition().y);
-        		}
-        	} else if (player.getDirection() == 2) {
-        	} else if (player.getDirection() == 3) {
+			switch(player.getDirection()) {
+			case Backward:
+				break;
+			case Forward:
+				break;
+			case Left:
         		if (player.getPosition().x > 1) {
         			player.setPosition(player.getPosition().x-player.getSpeed(), player.getPosition().y);
         		}
-        	}
+				break;
+			case Right:
+        		if (player.getPosition().x <= map.getWidth()* Map.TILE_WIDTH - 32) {
+        			player.setPosition(player.getPosition().x+player.getSpeed(), player.getPosition().y);
+        		}
+				break;
+			}
     	}
 		checkTeleport() ;
 	}
@@ -41,7 +45,7 @@ public class Environment {
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
 				Player player = this.getPlayer();
 				g.drawAnimation(
-						player.getAnimation(player.getDirection() + (player.isMoving() ? 4 : 0)),
+						player.getAnimation(player.getSpriteNum() + (player.isMoving() ? 4 : 0)),
 						player.getPosition().x, 
 						player.getPosition().y
 					);
