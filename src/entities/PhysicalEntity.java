@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
 public abstract class PhysicalEntity extends Entity {
 	
 	protected Vector2f position;
+	protected Vector2f movement;
 	protected int speed;
 	
 	/**
@@ -19,6 +20,7 @@ public abstract class PhysicalEntity extends Entity {
 	public PhysicalEntity() {
 		super();
 		position = new Vector2f();
+		movement = new Vector2f();
 	}
 	
 	/**
@@ -45,6 +47,40 @@ public abstract class PhysicalEntity extends Entity {
 	public void setPosition(float x, float y) {
 		position.x = x;
 		position.y = y;
+	}
+	
+	/**
+	 * Add a movement vector to the entity's current movement vector
+	 * @param movement
+	 */
+	public void addMovement(Vector2f movement) {
+		this.movement.add(movement);
+	}
+	
+	/**
+	 * Add a movement vector to the entity's current movement vector
+	 * @param x
+	 * @param y
+	 */
+	public void addMovement(float x, float y) {
+		movement.x += x;
+		movement.y += y;
+	}
+	
+	/**
+	 * Resets the entity's movement vector
+	 */
+	public void stopMovement() {
+		movement.x = 0;
+		movement.y = 0;
+	}
+	
+	/**
+	 * Get the entity movement vector
+	 * @return Vector2f
+	 */
+	public Vector2f getMovement() {
+		return movement;
 	}
 	
 	/**

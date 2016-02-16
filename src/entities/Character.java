@@ -33,7 +33,6 @@ public class Character extends PhysicalEntity {
 		this.width = width ;	
 		this.height = height ;
 		this.spriteSheet = new SpriteSheet(file, this.width, this.height) ;
-		this.setMoving(false) ;
 		this.setDirection(1) ;
 		this.setSpeed(2);
 		this.initAnimations() ;
@@ -87,16 +86,8 @@ public class Character extends PhysicalEntity {
 		return this.direction ;
 	}
 	
-	/**
-	 * This method defines if the character is moving or not.
-	 * @param moving
-	 */
-	public void setMoving(boolean moving) {
-		this.moving = moving ;	
-	}
-	
 	public boolean isMoving() {
-		return this.moving ;
+		return (movement.x != 0 || movement.y != 0);
 	}
 	
 	/**

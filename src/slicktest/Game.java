@@ -64,19 +64,17 @@ public class Game extends BasicGame {
     	switch (key) {
     	case Input.KEY_UP:
     		environment.getPlayer().setDirection(0);
-    		environment.getPlayer().setMoving(true);
     		break;
     	case Input.KEY_DOWN:
     		environment.getPlayer().setDirection(2) ;
-    		environment.getPlayer().setMoving(true);
     		break;
     	case Input.KEY_LEFT:
     		environment.getPlayer().setDirection(3);
-    		environment.getPlayer().setMoving(true);
+    		environment.getPlayer().addMovement(-1.f, 0.f);
     		break;
     	case Input.KEY_RIGHT:
     		environment.getPlayer().setDirection(1) ;
-    		environment.getPlayer().setMoving(true);
+    		environment.getPlayer().addMovement(1.f, 0.f);
     		break;
     	case Input.KEY_SPACE:
     		environment.getPlayer().setSpeed(4);
@@ -86,10 +84,20 @@ public class Game extends BasicGame {
     
     @Override
     public void keyReleased(int key, char c) {
-        if(key == Input.KEY_UP || key == Input.KEY_DOWN || key == Input.KEY_LEFT || key == Input.KEY_RIGHT) {
-        	environment.getPlayer().setMoving(false);
-        } else if (key == Input.KEY_SPACE) {
-        	environment.getPlayer().setSpeed(2);
+    	switch (key) {
+    	case Input.KEY_UP:
+    		break;
+    	case Input.KEY_DOWN:
+    		break;
+    	case Input.KEY_LEFT:
+    		environment.getPlayer().addMovement(1.f, 0.f);
+    		break;
+    	case Input.KEY_RIGHT:
+    		environment.getPlayer().addMovement(-1.f, 0.f);
+    		break;
+    	case Input.KEY_SPACE:
+    		environment.getPlayer().setSpeed(4);
+    		break;
         }
     }
 

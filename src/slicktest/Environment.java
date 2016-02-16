@@ -73,10 +73,6 @@ public class Environment {
 		
 	}
 	
-	/** 
-	 * This method return the current map.
-	 * @return Map
-	 */
 	public Map getMap() {
 		return map;
 	}
