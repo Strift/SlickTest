@@ -14,10 +14,11 @@ public class Environment {
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
 		player = new Player("/images/sonic.png", 24, 32) ;
-		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
+		player.setPosition(map.getInitialPosition().x + player.getWidth()/2, map.getInitialPosition().y - player.getHeight());
 	}
 
 	public void update(int delta) {
+		System.out.println(player.getPosition().x);
 		if(player.isMoving()) {
 			switch(player.getDirection()) {
 			case Backward:
@@ -36,7 +37,7 @@ public class Environment {
 				break;
 			}
     	}
-		checkTeleport() ;
+		//checkTeleport() ;
 	}
 	
 	public void render(Graphics g) {
