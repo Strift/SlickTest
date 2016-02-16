@@ -21,7 +21,6 @@ public class Character extends PhysicalEntity {
 	// Physics attributes
 	protected boolean moving ;
 	protected int direction ;
-	protected int moveSpeed ;
 	protected int height ;
 	protected int width ;
 	
@@ -139,11 +138,11 @@ public class Character extends PhysicalEntity {
 	}
 	
 	public void setMoveSpeed(int moveSpeed) {
-		this.moveSpeed = moveSpeed ;
+		this.speed = moveSpeed ;
 	}
 	
 	public int getMoveSpeed() {
-		return this.moveSpeed ;
+		return this.speed ;
 	}
 	
 	public void moveForward() {

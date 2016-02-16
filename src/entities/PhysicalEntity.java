@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
 public abstract class PhysicalEntity extends Entity {
 	
 	protected Vector2f position;
+	protected int speed;
 	
 	/**
 	 * Default constructor
