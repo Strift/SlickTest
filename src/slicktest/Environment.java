@@ -57,7 +57,7 @@ public class Environment {
 		TiledMap tiledMap = map.getTiledMap() ;
 		// We browse all objects on the map
 		for(int i = 0 ; i < tiledMap.getObjectCount(0) ; i++ ) {
-			// If object is a teleporter, we check if the player is in the object's box
+			// If object is a teleport, we check if the player is in the object's box
 			// Then we teleport the player to his new Location
 			if("teleport".equals(tiledMap.getObjectType(0, i))
 				&&	player.getPosition().x > tiledMap.getObjectX(0, i)
