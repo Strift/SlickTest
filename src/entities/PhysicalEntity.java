@@ -135,8 +135,19 @@ public abstract class PhysicalEntity extends Entity {
 		Vector2f newPos = position.copy();
 		newPos.x += movement.x * speed * Application.FRAME_RATE/delta;
 		newPos.y += movement.y * Application.FRAME_RATE/delta;
-		if (newPos.x >= 0 && newPos.x < map.getWidth() - this.getHitbox().getWidth()) {
-			this.setPosition(newPos);
+		// While the new position is outside the map
+		while(!isInsideMap(newPos)) {
+			newPos.x -= movement.x;
 		}
+		position = newPos;
+	}
+	
+	/**
+	 * Returns true if the given position is inside the map bounds
+	 * @param position
+	 * @return
+	 */
+	private boolean isInsideMap(Vector2f position) {
+		return (position.x >= 0 && position.x < map.getWidth() - this.getHitbox().getWidth());
 	}
 }

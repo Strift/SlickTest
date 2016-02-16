@@ -87,7 +87,7 @@ public class Game extends BasicGame {
     		environment.getPlayer().addMovement(1.f, 0.f);
     		break;
     	case Input.KEY_SPACE:
-    		environment.getPlayer().setSpeed(2);
+    		environment.getPlayer().setSpeed(5);
     		break;
     	}
     };
