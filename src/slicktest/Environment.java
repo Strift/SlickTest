@@ -39,7 +39,12 @@ public class Environment {
 		for (int i = 0 ; i < map.getTiledMap().getLayerCount() ; i++) {
 			map.getTiledMap().render(0, 0, i);
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
-				this.getPlayer().render(g);
+				Player player = this.getPlayer();
+				g.drawAnimation(
+						player.getAnimation(player.getDirection() + (player.isMoving() ? 4 : 0)),
+						player.getPosition().x, 
+						player.getPosition().y
+					);
 			}
 		}
 	}

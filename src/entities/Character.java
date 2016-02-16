@@ -79,10 +79,6 @@ public class Character extends PhysicalEntity {
     	}
     	return animation ;
     }
-    
-    public void render (Graphics g) {
-    	g.drawAnimation(animations[direction + (this.isMoving() ? 4 : 0)], position.x, position.y);
-    }
 	
 	public void setDirection(int direction) {
 		this.direction = direction ;
