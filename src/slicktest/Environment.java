@@ -21,7 +21,7 @@ public class Environment {
 	}
 
 	public void update(int delta) {
-		if(player.isMoving()) {
+		if(player.isMoving() || player.isFalling()) {
 			player.update(delta);
     	}
 		//checkTeleport() ;

@@ -1,5 +1,6 @@
 package entities;
 
+import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -18,6 +19,7 @@ public abstract class PhysicalEntity extends Entity {
 	protected Vector2f position;
 	protected Vector2f movement;
 	protected int speed;
+	protected boolean falling;
 	
 	public static void setMap(Map map) {
 		PhysicalEntity.map = map;
@@ -131,15 +133,28 @@ public abstract class PhysicalEntity extends Entity {
 		return this.getHitbox().intersects(other.getHitbox());
 	}
 	
+	/**
+	 * This method handles the whole entity update process
+	 * @param delta : elapsed time since last rendering
+	 */
 	public void update(int delta) {
 		Vector2f newPos = position.copy();
+		float gravityForce = 0;
+		
+		if (falling) {
+			gravityForce = 2.f;
+		}
 		newPos.x += movement.x * speed * Application.FRAME_RATE/delta;
-		newPos.y += movement.y * Application.FRAME_RATE/delta;
+		newPos.y += (movement.y + gravityForce) * Application.FRAME_RATE/delta;
 		// While the new position is outside the map
 		while(!isInsideMap(newPos)) {
 			newPos.x -= movement.x;
 		}
 		position = newPos;
+		// Disable gravity force if entity has landed
+		if (this.touchesGround()) {
+			this.setFalling(false);
+		}
 	}
 	
 	/**
@@ -149,5 +164,22 @@ public abstract class PhysicalEntity extends Entity {
 	 */
 	private boolean isInsideMap(Vector2f position) {
 		return (position.x >= 0 && position.x < map.getWidth() - this.getHitbox().getWidth());
+	}
+	
+	public boolean touchesGround() {
+		for (Path field : PhysicalEntity.map.getFields()) {
+			if (this.getHitbox().intersects(field)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void setFalling(boolean falling) {
+		this.falling = falling;
+	}
+	
+	public boolean isFalling() {
+		return falling;
 	}
 }

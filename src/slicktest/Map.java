@@ -1,7 +1,10 @@
 package slicktest;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
@@ -17,6 +20,7 @@ public class Map {
 	
 	private TiledMap tiledMap;
 	private Vector2f initialPosition;
+	private ArrayList<Path> fields;
 	
 	/**
 	 * Constructor : build a map from the Tiled map path
@@ -29,6 +33,25 @@ public class Map {
 				Float.parseFloat(tiledMap.getMapProperty("startX", "0")) * Map.TILE_WIDTH, 
 				Float.parseFloat(tiledMap.getMapProperty("startY", "0")) * Map.TILE_WIDTH
 			);
+		fields = new ArrayList<Path>();
+		Path groundLine = new Path(0, 224);
+		groundLine.lineTo(800, 224);
+		fields.add(groundLine);
+		//this.loadObjects();
+	}
+	
+	@SuppressWarnings("unused")
+	private void loadObjects() {
+		// Loop through the object groups
+		for (int objectGroupId = 0; objectGroupId < tiledMap.getObjectGroupCount(); objectGroupId++) {
+			// Loop through the objects in the group
+			for (int objectId = 0; objectId < tiledMap.getObjectCount(objectGroupId); objectId++) {
+				String objectType = tiledMap.getObjectType(objectGroupId, objectId);
+				if (objectType == "field") {
+					// We need to parse the XML to read the objects :(
+				}
+			}
+		}
 	}
 	
 	/**
@@ -61,6 +84,14 @@ public class Map {
 	 */
 	public Vector2f getInitialPosition() {
 		return initialPosition;
+	}
+	
+	/**
+	 * Get the list of fields in the map
+	 * @return ArrayList<Path>
+	 */
+	public ArrayList<Path> getFields() {
+		return fields;
 	}
 	
 }

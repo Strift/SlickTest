@@ -94,6 +94,9 @@ public class Game extends BasicGame {
     		environment.getPlayer().setDirection(Character.Direction.Right) ;
     		environment.getPlayer().addMovement(1.f, 0.f);
     		break;
+    	case Input.KEY_SPACE:
+    		environment.getPlayer().setFalling(true);
+    		environment.getPlayer().addMovement(0.f, -5f);
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setSpeed(5);
     		break;
@@ -113,6 +116,8 @@ public class Game extends BasicGame {
     	case Input.KEY_RIGHT:
     		environment.getPlayer().addMovement(-1.f, 0.f);
     		break;
+    	case Input.KEY_SPACE:
+    		environment.getPlayer().addMovement(0.f, 5f);
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setSpeed(1);
     		break;
