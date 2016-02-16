@@ -62,7 +62,7 @@ public class Character extends PhysicalEntity {
 	 * @param startX : first sprite to use in the animation
 	 * @param endX : last sprite to use in the animation
 	 * @param y : the line of the animation
-	 * @return
+	 * @return Animation
 	 */
     private Animation loadAnim(int startX, int endX, int y) {
     	Animation animation = new Animation() ;
