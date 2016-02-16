@@ -44,11 +44,7 @@ public class Environment {
 			map.getTiledMap().render(0, 0, i);
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
 				Player player = this.getPlayer();
-				g.drawAnimation(
-						player.getAnimation(player.getSpriteIndex() + (player.isMoving() ? 4 : 0)),
-						player.getPosition().x, 
-						player.getPosition().y
-					);
+				g.drawAnimation(player.getAnimation(), player.getPosition().x, player.getPosition().y);
 			}
 		}
 	}

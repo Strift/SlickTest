@@ -42,9 +42,9 @@ public class Character extends PhysicalEntity {
 	
 	/**
 	 * This method initializes the character's animations.
-	 * It sets animations in the corresponding field using the spritesheet given at instanciation.
+	 * It sets animations in the corresponding field using the sprite sheet given at construction.
 	 */
-	public void initAnimations() {
+	private void initAnimations() {
 		if(this.animations == null) {
 			this.animations = new Animation[8] ;
 		}
@@ -55,15 +55,6 @@ public class Character extends PhysicalEntity {
     	// Moving animations
 		for(int i = 0 ; i < 4 ; i++) 
 			this.animations[i+4] = loadAnim(1, nbSprite, i) ;
-	}
-	
-	/**
-	 * Get the animation animation associated with index
-	 * @param index
-	 * @return
-	 */
-	public Animation getAnimation(int index) {
-		return this.animations[index] ;
 	}
 	
 	/**
@@ -98,6 +89,30 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
+	 * Get the current animation 
+	 * @return
+	 */
+	public Animation getAnimation() {
+		return animations[this.getSpriteIndex() + (this.isMoving() ? 4 : 0)] ;
+	}
+	
+	/**
+	 * Get the sprite index in sheet associated with current direction
+	 * @return
+	 */
+	private int getSpriteIndex() {
+		if (direction == Direction.Forward) {
+			return 2;
+		} else if (direction == Direction.Backward) {
+			return 0;
+		} else if (direction == Direction.Left) {
+			return 3;
+		} else {
+			return 1;
+		}		
+	}
+	
+	/**
 	 * Get the character's height in pixels
 	 * @return int
 	 */
@@ -111,22 +126,6 @@ public class Character extends PhysicalEntity {
 	 */
 	public int getWidth() {
 		return width;
-	}
-	
-	/**
-	 * Get the sprite index in sheet associated with current direction
-	 * @return
-	 */
-	public int getSpriteIndex() {
-		if (direction == Direction.Forward) {
-			return 2;
-		} else if (direction == Direction.Backward) {
-			return 0;
-		} else if (direction == Direction.Left) {
-			return 3;
-		} else {
-			return 1;
-		}		
 	}
 	
 	@Override
