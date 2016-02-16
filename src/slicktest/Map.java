@@ -26,32 +26,16 @@ public class Map {
 	public Map(String path) throws SlickException {
 		tiledMap = new TiledMap(path);
 		initialPosition = new Vector2f(
-				Float.parseFloat(tiledMap.getMapProperty("startX", "0"))-1 * Map.TILE_WIDTH, 
+				Float.parseFloat(tiledMap.getMapProperty("startX", "0")) * Map.TILE_WIDTH, 
 				Float.parseFloat(tiledMap.getMapProperty("startY", "0")) * Map.TILE_WIDTH
 			);
-	}
-	
-	/**
-	 * Get the map's height in tiles
-	 * @return int
-	 */
-	public int getHeight() {
-		return tiledMap.getHeight();
-	}
-	
-	/**
-	 * Get the map's width in tiles
-	 * @return int
-	 */
-	public int getWidth() {
-		return tiledMap.getWidth();
 	}
 	
 	/**
 	 * Get the map's height in pixels
 	 * @return int
 	 */
-	public int getRealHeight() {
+	public int getHeight() {
 		return tiledMap.getHeight() * TILE_HEIGHT;
 	}
 	
@@ -59,7 +43,7 @@ public class Map {
 	 * Get the map's width in pixels
 	 * @return int
 	 */
-	public int getRealWidth() {
+	public int getWidth() {
 		return tiledMap.getWidth() * TILE_WIDTH;
 	}
 	
