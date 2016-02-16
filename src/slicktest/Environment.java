@@ -2,9 +2,9 @@ package slicktest;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
+import entities.PhysicalEntity;
 import entities.Player;
 
 public class Environment {
@@ -14,16 +14,14 @@ public class Environment {
 
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
+		PhysicalEntity.setMap(map);
 		player = new Player("/images/sonic.png", 24, 32) ;
 		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
 	public void update(int delta) {
 		if(player.isMoving()) {
-			Vector2f newPos = player.nextPosition(delta);
-			if (newPos.x >= 0 && newPos.x < map.getWidth() - player.getWidth()) {
-				player.setPosition(newPos);
-			}
+			player.update(delta);
     	}
 		//checkTeleport() ;
 	}

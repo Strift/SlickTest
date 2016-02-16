@@ -3,6 +3,7 @@ package entities;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
+import slicktest.Map;
 import system.Application;
 
 /**
@@ -12,9 +13,15 @@ import system.Application;
  */
 public abstract class PhysicalEntity extends Entity {
 	
+	private static Map map;
+	
 	protected Vector2f position;
 	protected Vector2f movement;
 	protected int speed;
+	
+	public static void setMap(Map map) {
+		PhysicalEntity.map = map;
+	}
 	
 	/**
 	 * Default constructor
@@ -125,13 +132,11 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	public void update(int delta) {
-		// Update position	
-	}
-	
-	public Vector2f nextPosition(int delta) {
 		Vector2f newPos = position.copy();
 		newPos.x += movement.x * speed * Application.FRAME_RATE/delta;
 		newPos.y += movement.y * Application.FRAME_RATE/delta;
-		return newPos;
+		if (newPos.x >= 0 && newPos.x < map.getWidth() - this.getHitbox().getWidth()) {
+			this.setPosition(newPos);
+		}
 	}
 }
