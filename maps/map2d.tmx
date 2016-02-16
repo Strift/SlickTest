@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="16" tileheight="16" nextobjectid="31">
+ <properties>
+  <property name="startX" value="0"/>
+  <property name="startY" value="14"/>
+ </properties>
+ <tileset firstgid="1" name="tile2d" tilewidth="16" tileheight="16" spacing="2" margin="2" tilecount="1350" columns="54">
+  <image source="../images/tile2d.png" width="982" height="452"/>
+ </tileset>
+ <layer name="background2" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3POxGAMBQAwTchbZxEDhJpkRAjUYMHBmby2WL7uxoRFT5W4AdnBoB9tQNY3Q0wiSu9M2LTzh+j6Yt4ACqTO/RwFwAA
+  </data>
+ </layer>
+ <layer name="background1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2SUQ7CIAyGCzzsDm6H0r2oJ3F6h+mhvIB6InmAZGtwUJgQsV/SjGVr+/+lrQJoK4hdJVF6jnwf87AMEuCs4yLhq8T2SdVHyc81i0+99ua8MbvWKXeui4MAOAr/f0u1Y/q68kbjY2t2rQ+oZ/VfddyE38+0Nu4f0tflFeeNhD3A+vEz5H4o86LkhPjw6Y/xszZLPqj6S/px+UjVX8LP1Eeq/g5ofh76/NTxEvMz/hbCXa43/97jw+WnmcyxQbuB333Y+rnI3Y9h/pmTqiMYhmEYhvl93levGIlwFwAA
+  </data>
+ </layer>
+ <layer name="ground" width="50" height="30">
+  <properties>
+   <property name="level" value="0"/>
+  </properties>
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2VQQrCMBBFk3TjFXTT3kJvoRs9RqGn6EVyA72FrjyRX6hQSqfQMXWI/Q8elCzCmwRS5wghhOTEHT6sIxLgvXPBW1esly3cWUco6bcf4cmwZS5Se8o5pLsdW7/C24QSUnvKOaS9huvvGUq8JdWEbfEfEkIIIVqewbpATwmr7nuT8f/wDC+wDvNtFrq/PfY9KHrqL3pSzvLpj52/JCrPbcw4kOTPC7R2wMBwFwAA
+  </data>
+ </layer>
+ <layer name="foreground1" width="50" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3T0Q1AMBQFUKkxOlW/zIAFsIMZMIsZsI7704SkiTx9UuSe5MZfc9+rujzL3A9if5LUe9QK0ZMKk7rBWYM+LdIJe/XKc9ztEUt7jhgxO/BzpNqjhH8Dobfwpvu44ruGOmvNUeKcCqkf3Mtszt8jjTksMuCcEZkS3W9oNimHLDhnRbYP/adEREREREQSO50YTEBwFwAA
+  </data>
+ </layer>
+ <objectgroup name="events" width="1" height="1">
+  <object id="30" name="tp1" type="teleport" x="304" y="184" width="40" height="44">
+   <properties>
+    <property name="x" value="2"/>
+    <property name="y" value="25"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
