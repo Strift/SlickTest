@@ -32,6 +32,8 @@ public abstract class PhysicalEntity extends Entity {
 		super();
 		position = new Vector2f();
 		velocity = new Vector2f();
+		speed = 1f;
+		falling = false;
 	}
 	
 	/**
