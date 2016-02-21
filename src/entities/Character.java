@@ -133,4 +133,46 @@ public class Character extends PhysicalEntity {
 		return new Rectangle(position.x, position.y, width, height);
 	}
 	
+	/**
+	 * Set running to true to add 1 point to character's speed
+	 * @param running
+	 */
+	public void setRunning(boolean running) {
+		if (running) {
+			speed += 1f;
+		} else {
+			speed -= 1f;
+		}
+	}
+	
+	/**
+	 * Increment character's velocity vector X-component based on the given direction and updates character's direction
+	 * @param direction
+	 */
+	public void walk(Character.Direction direction) {
+		this.direction = direction;
+		if (direction == Character.Direction.Left) {
+			velocity.x -= 1f;
+		} else if (direction == Character.Direction.Right) {
+			velocity.x += 1f;
+		}
+	}
+	
+	/**
+	 * Decrement character's velocity vector X-component based on the given direction
+	 * @param direction
+	 */
+	public void stopWalking(Character.Direction direction) {
+		if (direction == Character.Direction.Left) {
+			velocity.x += 1f;
+		} else if (direction == Character.Direction.Right) {
+			velocity.x -= 1f;
+		}
+	}
+	
+	public void jump() {
+		falling = true;
+		velocity.y -= 5f;
+	}
+	
 }

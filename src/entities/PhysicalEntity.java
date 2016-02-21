@@ -17,7 +17,7 @@ public abstract class PhysicalEntity extends Entity {
 	private static Map map;
 	
 	protected Vector2f position;
-	protected Vector2f movement;
+	protected Vector2f velocity;
 	protected float speed;
 	protected boolean falling;
 	
@@ -31,7 +31,7 @@ public abstract class PhysicalEntity extends Entity {
 	public PhysicalEntity() {
 		super();
 		position = new Vector2f();
-		movement = new Vector2f();
+		velocity = new Vector2f();
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public abstract class PhysicalEntity extends Entity {
 	 * @param movement
 	 */
 	public void addMovement(Vector2f movement) {
-		this.movement.add(movement);
+		this.velocity.add(movement);
 	}
 	
 	/**
@@ -74,16 +74,16 @@ public abstract class PhysicalEntity extends Entity {
 	 * @param y
 	 */
 	public void addMovement(float x, float y) {
-		movement.x += x;
-		movement.y += y;
+		velocity.x += x;
+		velocity.y += y;
 	}
 	
 	/**
 	 * Resets the entity's movement vector
 	 */
 	public void stopMovement() {
-		movement.x = 0;
-		movement.y = 0;
+		velocity.x = 0;
+		velocity.y = 0;
 	}
 	
 	/**
@@ -91,7 +91,7 @@ public abstract class PhysicalEntity extends Entity {
 	 * @return Vector2f
 	 */
 	public Vector2f getMovement() {
-		return movement;
+		return velocity;
 	}
 	
 	/**
@@ -99,23 +99,7 @@ public abstract class PhysicalEntity extends Entity {
 	 * @return boolean
 	 */
 	public boolean isMoving() {
-		return (movement.x != 0 || movement.y != 0);
-	}
-	
-	/**
-	 * Get the Entity move speed
-	 * @return int
-	 */
-	public float getSpeed() {
-		return this.speed ;
-	}
-	
-	/**
-	 * Set the move speed
-	 * @param speed
-	 */
-	public void setSpeed(float speed) {
-		this.speed = speed ;
+		return (velocity.x != 0 || velocity.y != 0);
 	}
 	
 	/**
@@ -144,16 +128,16 @@ public abstract class PhysicalEntity extends Entity {
 		if (falling) {
 			gravityForce = 2.f;
 		}
-		newPos.x += movement.x * speed * Application.FRAME_RATE/delta;
-		newPos.y += (movement.y + gravityForce) * Application.FRAME_RATE/delta;
+		newPos.x += velocity.x * speed * Application.FRAME_RATE/delta;
+		newPos.y += (velocity.y + gravityForce) * Application.FRAME_RATE/delta;
 		// While the new position is outside the map
 		while(!isInsideMap(newPos)) {
-			newPos.x -= movement.x;
+			newPos.x -= velocity.x;
 		}
 		position = newPos;
 		// Disable gravity force if entity has landed
 		if (this.touchesGround()) {
-			this.setFalling(false);
+			falling = false;
 		}
 	}
 	
@@ -173,10 +157,6 @@ public abstract class PhysicalEntity extends Entity {
 			}
 		}
 		return false;
-	}
-	
-	public void setFalling(boolean falling) {
-		this.falling = falling;
 	}
 	
 	public boolean isFalling() {

@@ -80,25 +80,16 @@ public class Game extends BasicGame {
     @Override
     public void keyPressed(int key, char c) {
     	switch (key) {
-    	case Input.KEY_UP:
-    		environment.getPlayer().setDirection(Character.Direction.Backward);
-    		break;
-    	case Input.KEY_DOWN:
-    		environment.getPlayer().setDirection(Character.Direction.Forward) ;
-    		break;
     	case Input.KEY_LEFT:
-    		environment.getPlayer().setDirection(Character.Direction.Left);
-    		environment.getPlayer().addMovement(-1.f, 0.f);
+    		environment.getPlayer().walk(Character.Direction.Left);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().setDirection(Character.Direction.Right) ;
-    		environment.getPlayer().addMovement(1.f, 0.f);
+    		environment.getPlayer().walk(Character.Direction.Right);
     		break;
     	case Input.KEY_SPACE:
-    		environment.getPlayer().setFalling(true);
-    		environment.getPlayer().addMovement(0.f, -5f);
+    		environment.getPlayer().jump();
     	case Input.KEY_LSHIFT:
-    		environment.getPlayer().setSpeed(5);
+    		environment.getPlayer().setRunning(true);
     		break;
     	}
     };
@@ -106,20 +97,16 @@ public class Game extends BasicGame {
     @Override
     public void keyReleased(int key, char c) {
     	switch (key) {
-    	case Input.KEY_UP:
-    		break;
-    	case Input.KEY_DOWN:
-    		break;
     	case Input.KEY_LEFT:
-    		environment.getPlayer().addMovement(1.f, 0.f);
+    		environment.getPlayer().stopWalking(Character.Direction.Left);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().addMovement(-1.f, 0.f);
+    		environment.getPlayer().stopWalking(Character.Direction.Right);
     		break;
     	case Input.KEY_SPACE:
     		environment.getPlayer().addMovement(0.f, 5f);
     	case Input.KEY_LSHIFT:
-    		environment.getPlayer().setSpeed(1);
+    		environment.getPlayer().setRunning(false);
     		break;
     	case Input.KEY_ESCAPE:
     		running = false;
