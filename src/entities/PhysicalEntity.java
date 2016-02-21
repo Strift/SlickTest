@@ -18,7 +18,7 @@ public abstract class PhysicalEntity extends Entity {
 	
 	protected Vector2f position;
 	protected Vector2f movement;
-	protected int speed;
+	protected float speed;
 	protected boolean falling;
 	
 	public static void setMap(Map map) {
@@ -106,7 +106,7 @@ public abstract class PhysicalEntity extends Entity {
 	 * Get the Entity move speed
 	 * @return int
 	 */
-	public int getSpeed() {
+	public float getSpeed() {
 		return this.speed ;
 	}
 	
@@ -114,7 +114,7 @@ public abstract class PhysicalEntity extends Entity {
 	 * Set the move speed
 	 * @param speed
 	 */
-	public void setSpeed(int speed) {
+	public void setSpeed(float speed) {
 		this.speed = speed ;
 	}
 	
