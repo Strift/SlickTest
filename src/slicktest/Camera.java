@@ -13,6 +13,8 @@ public class Camera {
 	Environment environment;
 	private float x;
 	private float y;
+	private boolean horizontalCentering;
+	private boolean verticalCentering;
 	
 	/**
 	 * Constructor takes in parameter the game container
@@ -22,6 +24,8 @@ public class Camera {
 		this.gc = gc;
 		x = 0;
 		y = 0;
+		horizontalCentering = true;
+		verticalCentering = true;
 	}
 	
 	/**
@@ -33,24 +37,36 @@ public class Camera {
 	}
 	
 	/**
+	 * Enable/disable vertical centering
+	 * @param following
+	 */
+	public void setVerticalCentering(boolean following) {
+		verticalCentering = following;
+	}
+	
+	/**
 	 * Center the camera around the player of the environment
 	 */
 	public void center() {
 		// X axis centering
-		if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
-			x = 0;
-		} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - gc.getWidth()/2) {
-			x = environment.getMap().getWidth() - gc.getWidth();
-		} else {
-			x = environment.getPlayer().getPosition().x - (gc.getWidth() / 2);
+		if (horizontalCentering) {
+			if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
+				x = 0;
+			} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - gc.getWidth()/2) {
+				x = environment.getMap().getWidth() - gc.getWidth();
+			} else {
+				x = environment.getPlayer().getPosition().x - (gc.getWidth() / 2);
+			}
 		}
 		// Y axis centering
-		if(environment.getPlayer().getPosition().y < gc.getHeight()/2) {
-			y = 0 ;
-		} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - gc.getHeight()/2) {
-			y = environment.getMap().getHeight() - gc.getHeight();
-		} else {
-			y = environment.getPlayer().getPosition().y - (gc.getHeight() / 2);
+		if (verticalCentering) {
+			if(environment.getPlayer().getPosition().y < gc.getHeight()/2) {
+				y = 0 ;
+			} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - gc.getHeight()/2) {
+				y = environment.getMap().getHeight() - gc.getHeight();
+			} else {
+				y = environment.getPlayer().getPosition().y - (gc.getHeight() / 2);
+			}
 		}
 	}
 	
