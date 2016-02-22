@@ -15,6 +15,8 @@ import system.Application;
  */
 public abstract class PhysicalEntity extends Entity {
 	
+	private final static float GRAVITY_FORCE = 2f;
+	
 	private static Map map;
 	
 	protected Vector2f position;
@@ -132,7 +134,7 @@ public abstract class PhysicalEntity extends Entity {
 		
 		// Enable gravity if character is falling but has already took off
 		if (falling && this.touchesGround() == false) {
-			gravityForce = 2.f;
+			gravityForce = PhysicalEntity.GRAVITY_FORCE;
 		}
 		newPos.x += velocity.x * speed * Application.FRAME_RATE/delta;
 		newPos.y += (velocity.y + gravityForce) * Application.FRAME_RATE/delta;
