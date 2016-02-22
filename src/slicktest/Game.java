@@ -70,6 +70,9 @@ public class Game extends BasicGame {
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setRunning(true);
     		break;
+    	case Input.KEY_ESCAPE:
+    		running = false;
+    		break;
     	}
     };
     
@@ -84,9 +87,6 @@ public class Game extends BasicGame {
     		break;
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setRunning(false);
-    		break;
-    	case Input.KEY_ESCAPE:
-    		running = false;
     		break;
         }
     }
