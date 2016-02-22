@@ -130,14 +130,17 @@ public abstract class PhysicalEntity extends Entity {
 		Vector2f newPos = position.copy();
 		float gravityForce = 0;
 		
-		if (falling) {
+		// Enable gravity if character is falling but has already took off
+		if (falling && this.touchesGround() == false) {
 			gravityForce = 2.f;
 		}
 		newPos.x += velocity.x * speed * Application.FRAME_RATE/delta;
 		newPos.y += (velocity.y + gravityForce) * Application.FRAME_RATE/delta;
 		// Movement result
 		movement.update(delta);
-		newPos.add(movement.result());
+		Vector2f result = movement.result();
+		newPos.x += result.x * Application.FRAME_RATE/delta;
+		newPos.y += result.y * Application.FRAME_RATE/delta;
 		// While the new position is outside the map
 		while(!isInsideMap(newPos)) {
 			newPos.x -= velocity.x;

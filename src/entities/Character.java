@@ -172,8 +172,10 @@ public class Character extends PhysicalEntity {
 	}
 	
 	public void jump() {
-		falling = true;
-		movement.add(new Vector2f(0, -5f), 500);
+		if (falling == false) {
+			falling = true;
+			movement.add(new Vector2f(0, -4f), 150);
+		}
 	}
 	
 }
