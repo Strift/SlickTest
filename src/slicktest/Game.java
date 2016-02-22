@@ -32,7 +32,7 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		environment = new Environment();
-		camera = new Camera(gc);
+		camera = new Camera(gc.getWidth(), gc.getHeight());
 		camera.setEnvironment(environment);
 		camera.setVerticalCentering(false);
 	}

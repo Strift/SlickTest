@@ -1,7 +1,5 @@
 package slicktest;
 
-import org.newdawn.slick.GameContainer;
-
 /**
  * This class represents the camera associated with an environment
  * @author Strift
@@ -9,8 +7,9 @@ import org.newdawn.slick.GameContainer;
  */
 public class Camera {
 	
-	GameContainer gc;
-	Environment environment;
+	private int screenWidth;
+	private int screenHeight;
+	private Environment environment;
 	private float x;
 	private float y;
 	private boolean horizontalCentering;
@@ -20,8 +19,9 @@ public class Camera {
 	 * Constructor takes in parameter the game container
 	 * @param gc
 	 */
-	public Camera(GameContainer gc) {
-		this.gc = gc;
+	public Camera(int screenWidth, int screenHeight) {
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 		x = 0;
 		y = 0;
 		horizontalCentering = true;
@@ -50,22 +50,22 @@ public class Camera {
 	public void center() {
 		// X axis centering
 		if (horizontalCentering) {
-			if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
+			if (environment.getPlayer().getPosition().x < screenWidth/2) {
 				x = 0;
-			} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - gc.getWidth()/2) {
-				x = environment.getMap().getWidth() - gc.getWidth();
+			} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - screenWidth/2) {
+				x = environment.getMap().getWidth() - screenWidth;
 			} else {
-				x = environment.getPlayer().getPosition().x - (gc.getWidth() / 2);
+				x = environment.getPlayer().getPosition().x - (screenWidth/2);
 			}
 		}
 		// Y axis centering
 		if (verticalCentering) {
-			if(environment.getPlayer().getPosition().y < gc.getHeight()/2) {
+			if(environment.getPlayer().getPosition().y < screenHeight/2) {
 				y = 0 ;
-			} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - gc.getHeight()/2) {
-				y = environment.getMap().getHeight() - gc.getHeight();
+			} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - screenHeight/2) {
+				y = environment.getMap().getHeight() - screenHeight;
 			} else {
-				y = environment.getPlayer().getPosition().y - (gc.getHeight() / 2);
+				y = environment.getPlayer().getPosition().y - (screenHeight/2);
 			}
 		}
 	}
