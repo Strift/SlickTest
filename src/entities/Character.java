@@ -145,6 +145,7 @@ public class Character extends PhysicalEntity {
 			if (walkingRight) {
 				velocity.x += 2f;
 			}
+			velocity.x *= speed;
 		}
 		return velocity;		
 	}
@@ -242,7 +243,7 @@ public class Character extends PhysicalEntity {
 		Vector2f result = movement.result();
 		Vector2f velocity = this.getVelocity();
 		// New position calculation
-		newPos.x += (velocity.x + result.x) * speed * Application.FRAME_RATE/delta/2;
+		newPos.x += (velocity.x + result.x) * Application.FRAME_RATE/delta/2;
 		newPos.y += (velocity.y + result.y + gravityForce) * Application.FRAME_RATE/delta/2;
 		// While the new position is outside the map
 		while(!isInsideMap(newPos)) {
