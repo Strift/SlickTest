@@ -171,6 +171,9 @@ public class Character extends PhysicalEntity {
 		}
 	}
 	
+	/**
+	 * Make the character jump if possible
+	 */
 	public void jump() {
 		if (falling == false) {
 			falling = true;
