@@ -6,14 +6,14 @@ import java.util.List;
 
 import org.newdawn.slick.geom.Vector2f;
 
-public class Movement {
+public class ForceList {
 
 	private List<Force> forces;
 	
 	/**
 	 * Default constructor
 	 */
-	public Movement() {
+	public ForceList() {
 		forces = new LinkedList<Force>();
 	}
 	
