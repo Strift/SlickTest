@@ -4,6 +4,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * This class represents a character within the game.
@@ -172,7 +173,7 @@ public class Character extends PhysicalEntity {
 	
 	public void jump() {
 		falling = true;
-		velocity.y -= 5f;
+		movement.add(new Vector2f(0, -5f), 500);
 	}
 	
 }

@@ -88,6 +88,7 @@ public class Game extends BasicGame {
     		break;
     	case Input.KEY_SPACE:
     		environment.getPlayer().jump();
+    		break;
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setRunning(true);
     		break;
@@ -103,8 +104,6 @@ public class Game extends BasicGame {
     	case Input.KEY_RIGHT:
     		environment.getPlayer().stopWalking(Character.Direction.Right);
     		break;
-    	case Input.KEY_SPACE:
-    		environment.getPlayer().addMovement(0.f, 5f);
     	case Input.KEY_LSHIFT:
     		environment.getPlayer().setRunning(false);
     		break;

@@ -4,6 +4,7 @@ import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
+import physics.Movement;
 import slicktest.Map;
 import system.Application;
 
@@ -20,6 +21,7 @@ public abstract class PhysicalEntity extends Entity {
 	protected Vector2f velocity;
 	protected float speed;
 	protected boolean falling;
+	protected Movement movement;
 	
 	public static void setMap(Map map) {
 		PhysicalEntity.map = map;
@@ -34,6 +36,7 @@ public abstract class PhysicalEntity extends Entity {
 		velocity = new Vector2f();
 		speed = 1f;
 		falling = false;
+		movement = new Movement();
 	}
 	
 	/**
@@ -132,6 +135,9 @@ public abstract class PhysicalEntity extends Entity {
 		}
 		newPos.x += velocity.x * speed * Application.FRAME_RATE/delta;
 		newPos.y += (velocity.y + gravityForce) * Application.FRAME_RATE/delta;
+		// Movement result
+		movement.update(delta);
+		newPos.add(movement.result());
 		// While the new position is outside the map
 		while(!isInsideMap(newPos)) {
 			newPos.x -= velocity.x;
