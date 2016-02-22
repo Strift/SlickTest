@@ -12,8 +12,6 @@ import slicktest.Game;
  *
  */
 public class Application {
-
-	public final static int FRAME_RATE = 60;
 	
 	enum State {
 		Uninitialized, Initialized, Running, Exiting
@@ -39,7 +37,7 @@ public class Application {
 				throw new Error("Application must be uninitialized to start.");
 			}
 			appgc = new AppGameContainer(new Game(name), 640, 320, false);
-			appgc.setTargetFrameRate(FRAME_RATE);
+			appgc.setTargetFrameRate(Game.FRAME_RATE);
 	        appgc.setShowFPS(false);
 	        state = State.Initialized;
 	        this.run();

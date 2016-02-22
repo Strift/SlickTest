@@ -15,6 +15,8 @@ import entities.Character;
  *
  */
 public class Game extends BasicGame {
+
+	public final static int FRAME_RATE = 60;
 	
 	private Environment environment;
 	private Camera camera;
