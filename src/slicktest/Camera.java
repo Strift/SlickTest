@@ -2,6 +2,11 @@ package slicktest;
 
 import org.newdawn.slick.GameContainer;
 
+/**
+ * This class represents the camera associated with an environment
+ * @author Strift
+ *
+ */
 public class Camera {
 	
 	GameContainer gc;
@@ -9,16 +14,27 @@ public class Camera {
 	private float x;
 	private float y;
 	
+	/**
+	 * Constructor takes in parameter the game container
+	 * @param gc
+	 */
 	public Camera(GameContainer gc) {
 		this.gc = gc;
 		x = 0;
 		y = 0;
 	}
 	
+	/**
+	 * Set the environment the camera is associated with
+	 * @param environment
+	 */
 	public void setEnvironment(Environment environment) {
 		this.environment = environment;
 	}
 	
+	/**
+	 * Center the camera around the player of the environment
+	 */
 	public void center() {
 		// X axis centering
 		if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
@@ -38,10 +54,18 @@ public class Camera {
 		}
 	}
 	
+	/**
+	 * Get the camera position on X axis
+	 * @return float
+	 */
 	public float getX() {
 		return x;
 	}
 	
+	/**
+	 * Get the camera position on Y axis
+	 * @return float
+	 */
 	public float getY() {
 		return y;
 	}
