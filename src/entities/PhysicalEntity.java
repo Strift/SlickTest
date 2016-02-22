@@ -1,6 +1,5 @@
 package entities;
 
-import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -19,8 +18,6 @@ public abstract class PhysicalEntity extends Entity {
 	protected final static float GRAVITY_FORCE = 2f;
 	
 	protected Vector2f position;
-	protected float speed;
-	protected boolean falling;
 	protected Movement movement;
 	
 	public static void setMap(Map map) {
@@ -33,8 +30,6 @@ public abstract class PhysicalEntity extends Entity {
 	public PhysicalEntity() {
 		super();
 		position = new Vector2f();
-		speed = 1f;
-		falling = false;
 		movement = new Movement();
 	}
 	
@@ -65,7 +60,7 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
-	 * Get the entity hitbox
+	 * Get the entity's hitbox
 	 * @return Shape
 	 */
 	public abstract Shape getHitbox();
@@ -79,16 +74,9 @@ public abstract class PhysicalEntity extends Entity {
 		return this.getHitbox().intersects(other.getHitbox());
 	}
 	
-	public boolean touchesGround() {
-		for (Path field : PhysicalEntity.map.getFields()) {
-			if (this.getHitbox().intersects(field)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean isFalling() {
-		return falling;
-	}
+	/**
+	 * Get the entity's velocity
+	 * @return Vector2f
+	 */
+	public abstract Vector2f getVelocity();
 }

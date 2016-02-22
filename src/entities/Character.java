@@ -3,6 +3,7 @@ package entities;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -20,6 +21,8 @@ public class Character extends PhysicalEntity {
 	}
 
 	// Physics attributes
+	protected float speed;
+	protected boolean falling;
 	protected int height;
 	protected int width;
 	protected Direction direction;
@@ -39,6 +42,8 @@ public class Character extends PhysicalEntity {
 	 */
 	public Character(String file, int width, int height) throws SlickException {
 		super();
+		speed = 1f;
+		falling = false;
 		this.width = width ;	
 		this.height = height ;
 		direction = Direction.Right;
@@ -98,6 +103,69 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
+	 * Get the character's height in pixels
+	 * @return int
+	 */
+	public int getHeight() {
+		return height;
+	}
+	
+	/**
+	 * Get the character's width in pixels
+	 * @return int
+	 */
+	public int getWidth() {
+		return width;
+	}
+	
+	/**
+	 * Set running to true to add 1 point to character's speed
+	 * @param running
+	 */
+	public void setRunning(boolean running) {
+		if (running) {
+			speed += 1f;
+		} else {
+			speed -= 1f;
+		}
+	}
+	
+	@Override
+	public Rectangle getHitbox() {
+		return new Rectangle(position.x, position.y, width, height);
+	}
+	
+	@Override
+	public Vector2f getVelocity() {
+		Vector2f velocity = baseVelocity.copy();
+		if (falling == false) {
+			if (walkingLeft) {
+				velocity.x -= 2f;
+			}
+			if (walkingRight) {
+				velocity.x += 2f;
+			}
+		}
+		return velocity;		
+	}
+	
+	/**
+	 * Return true if the character is walking left or right
+	 * @return boolean
+	 */
+	public boolean isWalking() {
+		return (walkingLeft || walkingRight);
+	}
+	
+	/**
+	 * Return true if the character is falling
+	 * @return boolean
+	 */
+	public boolean isFalling() {
+		return falling;
+	}
+	
+	/**
 	 * Get the current animation 
 	 * @return
 	 */
@@ -122,65 +190,7 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
-	 * Get the character's height in pixels
-	 * @return int
-	 */
-	public int getHeight() {
-		return height;
-	}
-	
-	/**
-	 * Get the character's width in pixels
-	 * @return int
-	 */
-	public int getWidth() {
-		return width;
-	}
-	
-	@Override
-	public Rectangle getHitbox() {
-		return new Rectangle(position.x, position.y, width, height);
-	}
-	
-	/**
-	 * Set running to true to add 1 point to character's speed
-	 * @param running
-	 */
-	public void setRunning(boolean running) {
-		if (running) {
-			speed += 1f;
-		} else {
-			speed -= 1f;
-		}
-	}
-	
-	/**
-	 * Get the entity movement vector
-	 * @return Vector2f
-	 */
-	public Vector2f getVelocity() {
-		Vector2f velocity = baseVelocity.copy();
-		if (falling == false) {
-			if (walkingLeft) {
-				velocity.x -= 2f;
-			}
-			if (walkingRight) {
-				velocity.x += 2f;
-			}
-		}
-		return velocity;		
-	}
-	
-	/**
-	 * Return true if the entity's movement vector is non null
-	 * @return boolean
-	 */
-	public boolean isWalking() {
-		return (walkingLeft || walkingRight);
-	}
-	
-	/**
-	 * Increment character's velocity vector X-component based on the given direction and updates character's direction
+	 * Enable walking in given direction
 	 * @param direction
 	 */
 	public void startWalking(Character.Direction direction) {
@@ -193,7 +203,7 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
-	 * Decrement character's velocity vector X-component based on the given direction
+	 * Disable walking in given direction
 	 * @param direction
 	 */
 	public void stopWalking(Character.Direction direction) {
@@ -255,6 +265,15 @@ public class Character extends PhysicalEntity {
 	 */
 	private boolean isInsideMap(Vector2f position) {
 		return (position.x >= 0 && position.x < map.getWidth() - this.getHitbox().getWidth());
+	}
+	
+	public boolean touchesGround() {
+		for (Path field : PhysicalEntity.map.getFields()) {
+			if (this.getHitbox().intersects(field)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }
