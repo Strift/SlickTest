@@ -34,6 +34,7 @@ public class Game extends BasicGame {
 		environment = new Environment();
 		camera = new Camera(gc);
 		camera.setEnvironment(environment);
+		camera.setVerticalCentering(false);
 	}
 	
 	@Override
