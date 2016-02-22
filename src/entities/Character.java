@@ -6,6 +6,8 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
+import system.Application;
+
 /**
  * This class represents a character within the game.
  * @author elythiel
@@ -18,9 +20,12 @@ public class Character extends PhysicalEntity {
 	}
 
 	// Physics attributes
-	protected Direction direction;
 	protected int height;
 	protected int width;
+	protected Direction direction;
+	protected boolean walkingLeft;
+	protected boolean walkingRight;
+	protected Vector2f baseVelocity;
 	
 	// Render attributes
 	protected SpriteSheet spriteSheet;
@@ -33,12 +38,15 @@ public class Character extends PhysicalEntity {
 	 * @throws SlickException
 	 */
 	public Character(String file, int width, int height) throws SlickException {
+		super();
 		this.width = width ;	
 		this.height = height ;
 		direction = Direction.Right;
-		spriteSheet = new SpriteSheet(file, this.width, this.height) ;
-		speed = 1;
-		this.initAnimations() ;
+		walkingLeft = false;
+		walkingRight = false;
+		baseVelocity = new Vector2f();
+		spriteSheet = new SpriteSheet(file, this.width, this.height);
+		this.initAnimations();
 	}
 	
 	/**
@@ -94,7 +102,7 @@ public class Character extends PhysicalEntity {
 	 * @return
 	 */
 	public Animation getAnimation() {
-		return animations[this.getSpriteIndex() + (this.isMoving() ? 4 : 0)] ;
+		return animations[this.getSpriteIndex() + (this.isWalking() ? 4 : 0)] ;
 	}
 	
 	/**
@@ -147,15 +155,40 @@ public class Character extends PhysicalEntity {
 	}
 	
 	/**
+	 * Get the entity movement vector
+	 * @return Vector2f
+	 */
+	public Vector2f getVelocity() {
+		Vector2f velocity = baseVelocity.copy();
+		if (falling == false) {
+			if (walkingLeft) {
+				velocity.x -= 2f;
+			}
+			if (walkingRight) {
+				velocity.x += 2f;
+			}
+		}
+		return velocity;		
+	}
+	
+	/**
+	 * Return true if the entity's movement vector is non null
+	 * @return boolean
+	 */
+	public boolean isWalking() {
+		return (walkingLeft || walkingRight);
+	}
+	
+	/**
 	 * Increment character's velocity vector X-component based on the given direction and updates character's direction
 	 * @param direction
 	 */
-	public void walk(Character.Direction direction) {
+	public void startWalking(Character.Direction direction) {
 		this.direction = direction;
 		if (direction == Character.Direction.Left) {
-			velocity.x -= 1f;
+			walkingLeft = true;
 		} else if (direction == Character.Direction.Right) {
-			velocity.x += 1f;
+			walkingRight = true;
 		}
 	}
 	
@@ -165,9 +198,9 @@ public class Character extends PhysicalEntity {
 	 */
 	public void stopWalking(Character.Direction direction) {
 		if (direction == Character.Direction.Left) {
-			velocity.x += 1f;
+			walkingLeft = false;
 		} else if (direction == Character.Direction.Right) {
-			velocity.x -= 1f;
+			walkingRight = false;
 		}
 	}
 	
@@ -176,9 +209,52 @@ public class Character extends PhysicalEntity {
 	 */
 	public void jump() {
 		if (falling == false) {
+			movement.add(new Vector2f(0f, -6f), 150);
+			baseVelocity.add(this.getVelocity());
 			falling = true;
-			movement.add(new Vector2f(0f, -4f), 150);
 		}
+	}
+	
+	/**
+	 * This method handles the whole entity update process
+	 * @param delta : elapsed time since last rendering
+	 */
+	public void update(int delta) {
+		Vector2f newPos = position.copy();
+		float gravityForce = 0;
+		
+		// Enable gravity if character is falling but has already took off
+		if (falling && this.touchesGround() == false) {
+			gravityForce = PhysicalEntity.GRAVITY_FORCE;
+		}
+		// Movement result
+		movement.update(delta);
+		Vector2f result = movement.result();
+		Vector2f velocity = this.getVelocity();
+		// New position calculation
+		newPos.x += (velocity.x + result.x) * speed * Application.FRAME_RATE/delta/2;
+		newPos.y += (velocity.y + result.y + gravityForce) * Application.FRAME_RATE/delta/2;
+		// While the new position is outside the map
+		while(!isInsideMap(newPos)) {
+			newPos.x -= velocity.x;
+		}
+		position = newPos;
+		// Disable gravity force if entity has landed
+		if (this.touchesGround()) {
+			baseVelocity.x = 0;
+			baseVelocity.y = 0;
+			falling = false;
+		}
+		velocity = new Vector2f();
+	}
+	
+	/**
+	 * Returns true if the given position is inside the map bounds
+	 * @param position
+	 * @return
+	 */
+	private boolean isInsideMap(Vector2f position) {
+		return (position.x >= 0 && position.x < map.getWidth() - this.getHitbox().getWidth());
 	}
 	
 }

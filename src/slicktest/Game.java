@@ -59,10 +59,10 @@ public class Game extends BasicGame {
     public void keyPressed(int key, char c) {
     	switch (key) {
     	case Input.KEY_LEFT:
-    		environment.getPlayer().walk(Character.Direction.Left);
+    		environment.getPlayer().startWalking(Character.Direction.Left);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().walk(Character.Direction.Right);
+    		environment.getPlayer().startWalking(Character.Direction.Right);
     		break;
     	case Input.KEY_SPACE:
     		environment.getPlayer().jump();
