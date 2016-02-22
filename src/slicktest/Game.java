@@ -17,6 +17,7 @@ import entities.Character;
 public class Game extends BasicGame {
 	
 	private Environment environment;
+	Camera camera;
 	boolean running;
 	
 	/**
@@ -26,6 +27,13 @@ public class Game extends BasicGame {
 	public Game(String title) {
 		super(title);
 		running = true;
+	}
+
+	@Override
+	public void init(GameContainer gc) throws SlickException {
+		environment = new Environment();
+		camera = new Camera(gc);
+		camera.setEnvironment(environment);
 	}
 	
 	@Override
@@ -39,42 +47,11 @@ public class Game extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		this.centerCamera(gc, g);
+		camera.center();
+		g.translate(-camera.getX(), -camera.getY());
 		environment.render(g);
 		g.setColor(Color.red);
 		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - 10);
-	}
-	
-	/**
-	 * This method translates the graphics using the player location.
-	 * Player is always at center of the screen.
-	 * @param gc Game Container
-	 * @param g Graphics
-	 */
-	private void centerCamera(GameContainer gc, Graphics g) {
-		float cameraX;
-		float cameraY;
-		
-		if (environment.getPlayer().getPosition().x < gc.getWidth()/2) {
-			cameraX = 0;
-		} else if (environment.getPlayer().getPosition().x > environment.getMap().getWidth() - gc.getWidth()/2) {
-			cameraX = environment.getMap().getWidth() - gc.getWidth();
-		} else {
-			cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2);
-		}
-		if(environment.getPlayer().getPosition().y < gc.getHeight()/2) {
-			cameraY = 0 ;
-		} else if (environment.getPlayer().getPosition().y > environment.getMap().getHeight() - gc.getHeight()/2) {
-			cameraY = environment.getMap().getHeight() - gc.getHeight();
-		} else {
-			cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2);
-		}
-		g.translate(-cameraX, -cameraY);
-	}
-
-	@Override
-	public void init(GameContainer gc) throws SlickException {
-		environment = new Environment();
 	}
 	
     @Override
