@@ -17,8 +17,8 @@ import entities.Character;
 public class Game extends BasicGame {
 	
 	private Environment environment;
-	Camera camera;
-	boolean running;
+	private Camera camera;
+	private boolean running;
 	
 	/**
 	 * Default constructor
@@ -51,6 +51,7 @@ public class Game extends BasicGame {
 		camera.center();
 		g.translate(-camera.getX(), -camera.getY());
 		environment.render(g);
+		// Display FPS on the player for debug purposes
 		g.setColor(Color.red);
 		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - 10);
 	}
