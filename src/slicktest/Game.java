@@ -17,6 +17,7 @@ import entities.Character;
 public class Game extends BasicGame {
 	
 	private Environment environment;
+	Camera camera;
 	boolean running;
 	
 	/**
@@ -26,6 +27,14 @@ public class Game extends BasicGame {
 	public Game(String title) {
 		super(title);
 		running = true;
+	}
+
+	@Override
+	public void init(GameContainer gc) throws SlickException {
+		environment = new Environment();
+		camera = new Camera(gc);
+		camera.setEnvironment(environment);
+		camera.setVerticalCentering(false);
 	}
 	
 	@Override
@@ -39,55 +48,30 @@ public class Game extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		this.centerCamera(gc, g);
+		camera.center();
+		g.translate(-camera.getX(), -camera.getY());
 		environment.render(g);
 		g.setColor(Color.red);
 		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - 10);
 	}
 	
-	/**
-	 * This method translates the graphics using the player location.
-	 * Player is always at center of the screen.
-	 * @param gc Game Container
-	 * @param g Graphics
-	 */
-	private void centerCamera(GameContainer gc, Graphics g) {
-		float cameraX = environment.getPlayer().getPosition().x - (gc.getWidth() / 2) ;
-		float cameraY = environment.getPlayer().getPosition().y - (gc.getHeight() / 2) ;
-		
-		if(cameraX < 0) {
-			cameraX = 0;
-		}
-		if(cameraY < 0) {
-			cameraY = 0 ;
-		}
-		g.translate(-cameraX, -cameraY);
-	}
-
-	@Override
-	public void init(GameContainer gc) throws SlickException {
-		environment = new Environment();
-	}
-	
     @Override
     public void keyPressed(int key, char c) {
     	switch (key) {
-    	case Input.KEY_UP:
-    		environment.getPlayer().setDirection(Character.Direction.Backward);
-    		break;
-    	case Input.KEY_DOWN:
-    		environment.getPlayer().setDirection(Character.Direction.Forward) ;
-    		break;
     	case Input.KEY_LEFT:
-    		environment.getPlayer().setDirection(Character.Direction.Left);
-    		environment.getPlayer().addMovement(-1.f, 0.f);
+    		environment.getPlayer().startWalking(Character.Direction.Left);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().setDirection(Character.Direction.Right) ;
-    		environment.getPlayer().addMovement(1.f, 0.f);
+    		environment.getPlayer().startWalking(Character.Direction.Right);
     		break;
     	case Input.KEY_SPACE:
-    		environment.getPlayer().setSpeed(5);
+    		environment.getPlayer().jump();
+    		break;
+    	case Input.KEY_LSHIFT:
+    		environment.getPlayer().setRunning(true);
+    		break;
+    	case Input.KEY_ESCAPE:
+    		running = false;
     		break;
     	}
     };
@@ -95,21 +79,14 @@ public class Game extends BasicGame {
     @Override
     public void keyReleased(int key, char c) {
     	switch (key) {
-    	case Input.KEY_UP:
-    		break;
-    	case Input.KEY_DOWN:
-    		break;
     	case Input.KEY_LEFT:
-    		environment.getPlayer().addMovement(1.f, 0.f);
+    		environment.getPlayer().stopWalking(Character.Direction.Left);
     		break;
     	case Input.KEY_RIGHT:
-    		environment.getPlayer().addMovement(-1.f, 0.f);
+    		environment.getPlayer().stopWalking(Character.Direction.Right);
     		break;
-    	case Input.KEY_SPACE:
-    		environment.getPlayer().setSpeed(1);
-    		break;
-    	case Input.KEY_ESCAPE:
-    		running = false;
+    	case Input.KEY_LSHIFT:
+    		environment.getPlayer().setRunning(false);
     		break;
         }
     }

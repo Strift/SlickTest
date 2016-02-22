@@ -2,6 +2,7 @@ package slicktest;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.tiled.TiledMap;
 
 import entities.PhysicalEntity;
@@ -20,9 +21,10 @@ public class Environment {
 	}
 
 	public void update(int delta) {
-		if(player.isMoving()) {
+		// If player is moving
+		if (player.isWalking() || player.isFalling()) {
 			player.update(delta);
-    	}
+		}
 		//checkTeleport() ;
 	}
 	
@@ -33,6 +35,10 @@ public class Environment {
 				Player player = this.getPlayer();
 				g.drawAnimation(player.getAnimation(), player.getPosition().x, player.getPosition().y);
 			}
+		}
+		// Draw fields for debug purposes
+		for (Path path : map.getFields()) {
+			g.draw(path);
 		}
 	}
 	
