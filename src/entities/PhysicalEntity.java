@@ -1,17 +1,16 @@
 package entities;
 
-import org.newdawn.slick.geom.Shape;
 import org.newdawn.slick.geom.Vector2f;
 
 import physics.Movement;
 import slicktest.Map;
 
 /**
- * This class represents an entity that has a position and can move on the map
+ * This class represents an entity that is subject to physics
  * @author Strift
  *
  */
-public abstract class PhysicalEntity extends Entity {
+public abstract class PhysicalEntity extends Entity implements ICollisionable {
 
 	protected static Map map;
 	
@@ -60,12 +59,6 @@ public abstract class PhysicalEntity extends Entity {
 	}
 	
 	/**
-	 * Get the entity's hitbox
-	 * @return Shape
-	 */
-	public abstract Shape getHitbox();
-	
-	/**
 	 * Returns true if the two PhysicalEntities hitbox intersects
 	 * @param other
 	 * @return boolean
@@ -73,10 +66,4 @@ public abstract class PhysicalEntity extends Entity {
 	public boolean collidesWith(PhysicalEntity other) {
 		return this.getHitbox().intersects(other.getHitbox());
 	}
-	
-	/**
-	 * Get the entity's velocity
-	 * @return Vector2f
-	 */
-	public abstract Vector2f getVelocity();
 }

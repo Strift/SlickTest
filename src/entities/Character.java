@@ -14,7 +14,7 @@ import system.Application;
  * @author elythiel
  *  
  */
-public class Character extends PhysicalEntity {
+public class Character extends PhysicalEntity implements IMoveable {
 	
 	public enum Direction {
 		Forward, Backward, Left, Right
@@ -185,7 +185,7 @@ public class Character extends PhysicalEntity {
 			return 0;
 		} else if (direction == Direction.Left) {
 			return 3;
-		} else {
+		} else { // Right
 			return 1;
 		}		
 	}
