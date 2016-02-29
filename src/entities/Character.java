@@ -8,7 +8,6 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
 import slicktest.Game;
-import system.Application;
 
 /**
  * This class represents a character within the game.
