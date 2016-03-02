@@ -7,19 +7,27 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 import entities.PhysicalEntity;
-import entities.Player;
+import entities.Character;
 
 public class Environment {
 	
 	private Map map ;
-	private Player player ;
+	private Character player ;
 
+	/**
+	 * Default constructor
+	 * @throws SlickException
+	 */
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
-		player = new Player("/images/sonic.png", 24, 32) ;
+		player = new Character("/images/sonic.png", 24, 32);
 		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
 
+	/**
+	 * Updates all the component of the environment
+	 * @param delta
+	 */
 	public void update(int delta) {
 		// If player is moving
 		if (player.isWalking() || player.isFalling()) {
@@ -58,7 +66,6 @@ public class Environment {
 		for (int i = 0 ; i < map.getTiledMap().getLayerCount() ; i++) {
 			map.getTiledMap().render(0, 0, i);
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
-				Player player = this.getPlayer();
 				g.drawAnimation(player.getAnimation(), player.getPosition().x, player.getPosition().y);
 			}
 		}
@@ -97,11 +104,7 @@ public class Environment {
 		return map;
 	}
 	
-	public Player getPlayer() {
+	public Character getPlayer() {
 		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
 	}
 }
