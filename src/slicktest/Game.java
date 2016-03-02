@@ -55,7 +55,7 @@ public class Game extends BasicGame {
 		environment.render(g);
 		// Display FPS on the player for debug purposes
 		g.setColor(Color.red);
-		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - 10);
+		g.drawString("FPS: " + gc.getFPS(), environment.getPlayer().getPosition().x, environment.getPlayer().getPosition().y - environment.getPlayer().getHeight() - 10);
 	}
 	
     @Override

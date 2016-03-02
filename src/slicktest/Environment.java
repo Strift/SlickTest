@@ -21,7 +21,7 @@ public class Environment {
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
 		player = new Character("/images/sonic.png", 24, 32);
-		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
+		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y);
 	}
 
 	/**
@@ -42,8 +42,12 @@ public class Environment {
 				nextPos.x -= xMovement; 
 			}
 			player.setPosition(nextPos);
-			if (touchesGround(player)) {
+			Path field = touchesGround(player);
+			if (field != null) {
 				player.hasLanded();
+				if (player.getPosition().y > field.getCenterY()) {
+					player.setPosition(nextPos.x, field.getCenterY());
+				}
 			}
 		}
 		//checkTeleport() ;
@@ -53,20 +57,20 @@ public class Environment {
 		return (position.x >= 0 && position.x < map.getWidth() - entity.getHitbox().getWidth());
 	}
 	
-	private boolean touchesGround(PhysicalEntity entity) {
+	private Path touchesGround(PhysicalEntity entity) {
 		for (Path field : map.getFields()) {
 			if (entity.getHitbox().intersects(field)) {
-				return true;
+				return field;
 			}
 		}
-		return false;
+		return null;
 	}
 	
 	public void render(Graphics g) {
 		for (int i = 0 ; i < map.getTiledMap().getLayerCount() ; i++) {
 			map.getTiledMap().render(0, 0, i);
 			if(map.getTiledMap().getLayerProperty(i, "level", "none").equals("0")) {
-				g.drawAnimation(player.getAnimation(), player.getPosition().x, player.getPosition().y);
+				g.drawAnimation(player.getAnimation(), player.getPosition().x, player.getPosition().y - player.getHeight());
 			}
 		}
 		// Draw fields for debug purposes

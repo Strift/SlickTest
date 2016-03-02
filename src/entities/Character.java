@@ -131,7 +131,7 @@ public class Character extends PhysicalEntity implements IMoveable {
 	
 	@Override
 	public Rectangle getHitbox() {
-		return new Rectangle(position.x, position.y, width, height);
+		return new Rectangle(position.x, position.y - height, width, height);
 	}
 	
 	private Vector2f getVelocity() {
