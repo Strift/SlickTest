@@ -6,8 +6,6 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
-import slicktest.Game;
-
 /**
  * This class represents a character within the game.
  * @author elythiel
@@ -138,10 +136,10 @@ public class Character extends PhysicalEntity implements IMoveable {
 		Vector2f velocity = baseVelocity.copy();
 		if (falling == false) {
 			if (walkingLeft) {
-				velocity.x -= 2f;
+				velocity.x -= 1f;
 			}
 			if (walkingRight) {
-				velocity.x += 2f;
+				velocity.x += 1f;
 			}
 			velocity.x *= speed;
 		}
@@ -247,8 +245,8 @@ public class Character extends PhysicalEntity implements IMoveable {
 		Vector2f result = forces.result();
 		Vector2f velocity = this.getVelocity();
 		// New position calculation
-		newPos.x += (velocity.x + result.x) * Game.FRAME_RATE/delta/2;
-		newPos.y += (velocity.y + result.y + gravityForce) * Game.FRAME_RATE/delta/2;
+		newPos.x += (velocity.x + result.x) * delta/5;
+		newPos.y += (velocity.y + result.y + gravityForce) * delta/5;
 		return newPos;
 	}
 	
