@@ -3,6 +3,7 @@ package slicktest;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Path;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 import entities.PhysicalEntity;
@@ -15,7 +16,6 @@ public class Environment {
 
 	public Environment() throws SlickException {
 		map = new Map("/maps/map2d.tmx") ;
-		PhysicalEntity.setMap(map);
 		player = new Player("/images/sonic.png", 24, 32) ;
 		player.setPosition(map.getInitialPosition().x, map.getInitialPosition().y - player.getHeight());
 	}
@@ -23,9 +23,35 @@ public class Environment {
 	public void update(int delta) {
 		// If player is moving
 		if (player.isWalking() || player.isFalling()) {
-			player.update(delta);
+			Vector2f nextPos = player.nextPosition(delta);
+			int xMovement = 0;
+			if (player.getPosition().x < nextPos.x) {
+				xMovement = 1;
+			} else if (player.getPosition().x > nextPos.x) {
+				xMovement = -1;
+			}
+			while(!isInsideMap(player, nextPos)) {
+				nextPos.x -= xMovement; 
+			}
+			player.setPosition(nextPos);
+			if (touchesGround(player)) {
+				player.hasLanded();
+			}
 		}
 		//checkTeleport() ;
+	}
+	
+	private boolean isInsideMap(PhysicalEntity entity, Vector2f position) {
+		return (position.x >= 0 && position.x < map.getWidth() - entity.getHitbox().getWidth());
+	}
+	
+	private boolean touchesGround(PhysicalEntity entity) {
+		for (Path field : map.getFields()) {
+			if (entity.getHitbox().intersects(field)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void render(Graphics g) {

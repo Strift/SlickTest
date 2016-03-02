@@ -3,7 +3,6 @@ package entities;
 import org.newdawn.slick.geom.Vector2f;
 
 import physics.ForceList;
-import slicktest.Map;
 
 /**
  * This class represents an entity that is subject to physics
@@ -11,17 +10,11 @@ import slicktest.Map;
  *
  */
 public abstract class PhysicalEntity extends Entity implements ICollisionable {
-
-	protected static Map map;
 	
 	protected final static float GRAVITY_FORCE = 2f;
 	
 	protected Vector2f position;
-	protected ForceList movement;
-	
-	public static void setMap(Map map) {
-		PhysicalEntity.map = map;
-	}
+	protected ForceList forces;
 	
 	/**
 	 * Default constructor
@@ -29,7 +22,7 @@ public abstract class PhysicalEntity extends Entity implements ICollisionable {
 	public PhysicalEntity() {
 		super();
 		position = new Vector2f();
-		movement = new ForceList();
+		forces = new ForceList();
 	}
 	
 	/**

@@ -3,7 +3,6 @@ package entities;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Path;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -135,8 +134,7 @@ public class Character extends PhysicalEntity implements IMoveable {
 		return new Rectangle(position.x, position.y, width, height);
 	}
 	
-	@Override
-	public Vector2f getVelocity() {
+	private Vector2f getVelocity() {
 		Vector2f velocity = baseVelocity.copy();
 		if (falling == false) {
 			if (walkingLeft) {
@@ -220,61 +218,38 @@ public class Character extends PhysicalEntity implements IMoveable {
 	 */
 	public void jump() {
 		if (falling == false) {
-			movement.add(new Vector2f(0f, -6f), 150);
+			forces.add(new Vector2f(0f, -6f), 150);
 			baseVelocity.add(this.getVelocity());
 			falling = true;
 		}
 	}
 	
 	/**
-	 * This method handles the whole entity update process
-	 * @param delta : elapsed time since last rendering
+	 * This method is called when the character has landed
 	 */
-	public void update(int delta) {
+	public void hasLanded() {
+		baseVelocity.x = 0;
+		baseVelocity.y = 0;
+		falling = false;
+	}
+	
+	@Override
+	public Vector2f nextPosition(int delta) {
 		Vector2f newPos = position.copy();
 		float gravityForce = 0;
 		
 		// Enable gravity if character is falling but has already took off
-		if (falling && this.touchesGround() == false) {
+		if (falling /*&& this.touchesGround() == false*/) {
 			gravityForce = PhysicalEntity.GRAVITY_FORCE;
 		}
 		// Movement result
-		movement.update(delta);
-		Vector2f result = movement.result();
+		forces.update(delta);
+		Vector2f result = forces.result();
 		Vector2f velocity = this.getVelocity();
 		// New position calculation
 		newPos.x += (velocity.x + result.x) * Game.FRAME_RATE/delta/2;
 		newPos.y += (velocity.y + result.y + gravityForce) * Game.FRAME_RATE/delta/2;
-		// While the new position is outside the map
-		while(!isInsideMap(newPos)) {
-			newPos.x -= velocity.x;
-		}
-		position = newPos;
-		// Disable gravity force if entity has landed
-		if (this.touchesGround()) {
-			baseVelocity.x = 0;
-			baseVelocity.y = 0;
-			falling = false;
-		}
-		velocity = new Vector2f();
-	}
-	
-	/**
-	 * Returns true if the given position is inside the map bounds
-	 * @param position
-	 * @return
-	 */
-	private boolean isInsideMap(Vector2f position) {
-		return (position.x >= 0 && position.x < map.getWidth() - this.getHitbox().getWidth());
-	}
-	
-	public boolean touchesGround() {
-		for (Path field : PhysicalEntity.map.getFields()) {
-			if (this.getHitbox().intersects(field)) {
-				return true;
-			}
-		}
-		return false;
+		return newPos;
 	}
 	
 }

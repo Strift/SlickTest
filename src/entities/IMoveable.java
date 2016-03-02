@@ -8,10 +8,11 @@ import org.newdawn.slick.geom.Vector2f;
  *
  */
 public interface IMoveable {
-
+	
 	/**
-	 * Get the entity's velocity
+	 * Get the entity's movement vector
+	 * @param delta : elapsed time
 	 * @return Vector2f
 	 */
-	public Vector2f getVelocity();
+	public Vector2f nextPosition(int delta);
 }
