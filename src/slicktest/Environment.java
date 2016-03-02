@@ -100,10 +100,18 @@ public class Environment {
 		
 	}
 	
+	/**
+	 * Get the environment current map
+	 * @return
+	 */
 	public Map getMap() {
 		return map;
 	}
 	
+	/**
+	 * Get the environment current player
+	 * @return
+	 */
 	public Character getPlayer() {
 		return player;
 	}
