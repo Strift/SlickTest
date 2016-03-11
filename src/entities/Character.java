@@ -216,7 +216,7 @@ public class Character extends PhysicalEntity implements IMoveable {
 	 */
 	public void jump() {
 		if (falling == false) {
-			forces.add(new Vector2f(0f, -6f), 150);
+			forces.add(new Vector2f(0f, -3f), 150);
 			baseVelocity.add(this.getVelocity());
 			falling = true;
 		}

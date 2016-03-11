@@ -11,7 +11,7 @@ import physics.ForceList;
  */
 public abstract class PhysicalEntity extends Entity implements ICollisionable {
 	
-	protected final static float GRAVITY_FORCE = 2f;
+	protected final static float GRAVITY_FORCE = 1f;
 	
 	protected Vector2f position;
 	protected ForceList forces;
